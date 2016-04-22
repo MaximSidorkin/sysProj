@@ -112,9 +112,6 @@ class ESeleniumTestDelBlock_5(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
-        #toast - close - button
-        #toast - container
-
         if __name__ == '__main__':
             unittest.main()
 
