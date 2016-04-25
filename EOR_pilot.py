@@ -10,6 +10,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 driver = webdriver.Firefox()
 driver.get("http://dev.eor.gosapi.ru/")
+driver.maximize_window()
 wait = WebDriverWait(driver, 10)
 
 class ASeleniumAutoTest_1(unittest.TestCase):

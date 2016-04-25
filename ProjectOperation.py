@@ -70,6 +70,7 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
     def test_2SearchBlock(self):
         SrcSelenBlock = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/div[1]/div[2]/div[1]/input')
         SrcSelenBlock.send_keys('Selenium')
+        time.sleep(2)
         GetTarget = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/div[1]/div[2]/div[2]/ul/li[25]/a/span/span')
         GetTarget.click()
         time.sleep(2)
@@ -80,7 +81,21 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
     def test_3NewPjctFormBlock(self):
         _ = driver.find_element_by_xpath("//form/div/div[2]/div[2]/div/div[4]/b")
         nameOfpjct = driver.find_element_by_xpath("//form/div/div[2]/div[4]/div/textarea")
+
+        #nameOfpjct.click()  #test
+        #time.sleep(1)
+        #otherFild = driver.find_element_by_xpath('//div[2]/div[2]/div[2]/form/div/div[2]/div[6]/div/textarea')  #test
+        #time.sleep(1)
+        #otherFild.click()   #test
+        #time.sleep(1)
+        #otherFild.send_keys('1')
+        #driver.find_element_by_xpath('//div[2]/div[2]/div[3]/form/div/div[2]/div[4]/div/div')   #test
+        #time.sleep(1)
+        #nameOfpjct = driver.find_element_by_xpath("//form/div/div[2]/div[4]/div/textarea")# test
+
+        nameOfpjct.click()  #test
         nameOfpjct.send_keys("Тестовый проект созданный Selenium")
+
         time.sleep(2)
         _ = driver.find_element_by_class_name('warn-cp').text == 'проект'   # test
         autorDown = driver.find_element_by_xpath("//form/div/div[2]/div[8]/div/span/span[1]/span/span[2]")
@@ -149,6 +164,35 @@ class DSeleniumEditProject(unittest.TestCase):
 
     if __name__ == '__main__':
         unittest.main()
+
+    def test_4SeekAndDestroy(self):
+       time.sleep(2)
+       assert "ЭОР" in driver.title
+       elem = driver.find_element_by_link_text('Поиск')
+       elem.click()
+       time.sleep(2)
+       elemSearch = driver.find_element_by_id('search-text')
+       elemSearch.click()
+       elemSearch.send_keys(' edit ')
+       elemSearch.send_keys(Keys.ENTER)
+       time.sleep(1)
+       elemTestBlock = driver.find_element_by_xpath('//div[2]/div[2]/div/table/tbody/tr/td[1]/h4')
+       elemTestBlock.click()
+       time.sleep(2)
+       DelProject = driver.find_element_by_xpath('//div[2]/div[2]/div[2]/table/tbody/tr/td[2]/button[2]')
+       DelProject.click()
+       time.sleep(1)
+       elemNo = driver.find_element_by_xpath("html/body/div[3]/div[3]/div/button[2]")
+       elemNo.click()
+       DelProject.click()
+       time.sleep(1)
+       elemYes = driver.find_element_by_xpath('html/body/div[3]/div[3]/div/button[1]')
+       elemYes.click()
+
+    if __name__ == '__main__':
+        unittest.main()
+
+
 
 
 
