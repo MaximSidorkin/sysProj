@@ -168,6 +168,10 @@ class DSeleniumTestCPForm(unittest.TestCase):
         assert "404" not in driver.title
         time.sleep(3)
 
+
+    if __name__ == '__main__':
+        unittest.main()
+
 class ESeleniumEditCP(unittest.TestCase):
     def test_1ClickEditButton(self):
         editButton = driver.find_element_by_xpath('//div[2]/div[4]/div/div[2]/div/div[2]/div[11]/input[1]')
@@ -196,7 +200,7 @@ class ESeleniumEditCP(unittest.TestCase):
         assert "404" not in driver.title
 
 class FSeleniumSeekAndDestroy(unittest.TestCase):
-    def test_1SeekDelButton(self):
+    def test_1FilterSetting(self):
         assert "ЭОР" in driver.title
         FilterSetting = driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/a/span')
         FilterSetting.click()
@@ -205,18 +209,24 @@ class FSeleniumSeekAndDestroy(unittest.TestCase):
         ConfirmFilter = driver.find_element_by_xpath('//div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/ul/li[4]/button[2]')
         ConfirmFilter.click()
         time.sleep(3)
+
+    def test_2TextFilterSetting(self):
         ClearText = driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[8]/li[1]/span')
         ClearText.click()
         FindNew = driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[8]/li[1]/input')
         FindNew.send_keys('контрольная точка созданная Selenium редактировано ')
         FindNew.send_keys(Keys.ENTER)
         time.sleep(2)
+
+    def test_3BlockAndProjectListing(self):
         findBlock = driver.find_element_by_xpath('//div[2]/div[4]/div[2]/div[2]/div/table/tbody/tr/td[1]/h4/strong/a')
         findBlock.click()
         time.sleep(1)
         findProject = driver.find_element_by_xpath('//div[2]/div[4]/div[2]/div[2]/div[2]/table/tbody/tr/td[1]/h4/strong/a')
         findProject.click()
         time.sleep(2)
+
+    def test_4DelCPAndConfirmThis(self):
         #_ = driver.find_element_by_xpath('//div[2]/div[4]/div[2]/div[2]/div[3]/div/div[1]/div/h4/a/div/span').text == 'контрольная точка созданная Selenium редактировано'
         DelCP = driver.find_element_by_xpath('//div[2]/div[4]/div[2]/div[2]/div[3]/div/div[1]/div/div/button[3]')
         DelCP.click()
@@ -227,3 +237,10 @@ class FSeleniumSeekAndDestroy(unittest.TestCase):
         time.sleep(1)
         elemYes = driver.find_element_by_xpath('html/body/div[3]/div[3]/div/button[1]')
         elemYes.click()
+
+
+        assert "500" not in driver.title  # проверка на 500/404 ошибку
+        assert "404" not in driver.title
+
+    if __name__ == '__main__':
+        unittest.main()
