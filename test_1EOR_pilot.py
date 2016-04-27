@@ -60,7 +60,7 @@ class CSeleniumCreateNewBlock_3(unittest.TestCase):
         _ = driver.find_element_by_class_name('warn-cp')    #есть текст "Вы собираетесь создать блок."
         elemTitle = wait.until(EC.element_to_be_clickable((By.ID,'Checkpoint_TITLE')))
         elemTitle = driver.find_element_by_id("Checkpoint_TITLE")
-        elemTitle.send_keys("Создал Selenium")
+        elemTitle.send_keys("Создал Selenium автотест №1")
     def test_2Not500or404(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -92,7 +92,7 @@ class ESeleniumTestDelBlock_5(unittest.TestCase):
         time.sleep(2)
         elemSearch = driver.find_element_by_id('search-text')
         elemSearch.click()
-        elemSearch.send_keys('Создал Selenium')
+        elemSearch.send_keys('Создал Selenium автотест №1')
         elemSearch.send_keys(Keys.ENTER)
         #добавить проверку "нашел или не нашёл"
     def test_2SearchNewBlock(self):
@@ -107,8 +107,8 @@ class ESeleniumTestDelBlock_5(unittest.TestCase):
     def test_3ConfirmDeleteBlock(self):
         elemSearch = driver.find_element_by_id("search-text-push")
         elemSearch.click()
-        time.sleep(3)
-        _ = driver.find_element_by_xpath("/html/body/div[1]/div[2]/div[4]/div[2]/div[2]/div/table/tbody/tr/td/div").text == "Ничего не найдено"
+        time.sleep(4)
+        _ = driver.find_element_by_xpath("/html/body/div[1]/div[2]/div[4]/div[2]/div[2]/div/table/tbody/tr/td/div").text != 'автотест №1'
     def test_4Not500or404(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
