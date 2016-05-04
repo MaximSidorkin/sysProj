@@ -1,6 +1,7 @@
 import time
 import unittest
 global str
+import page_objects
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -12,6 +13,7 @@ driver = webdriver.Firefox()
 driver.get("http://dev.eor.gosapi.ru/")
 driver.maximize_window()
 wait = WebDriverWait(driver, 10)
+
 
 class ASeleniumLogin_1(unittest.TestCase):
     def test_1LoginInEORDev(self):
@@ -71,14 +73,23 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
         SrcSelenBlock = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/div[1]/div[2]/div[1]/input')
         SrcSelenBlock.send_keys('Selenium')
         time.sleep(2)
-        GetTarget = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/div[1]/div[2]/div[2]/ul/li[25]/a/span/span')
-        GetTarget.click()
+        # test
+        GetTarget = driver.find_element(By.CLASS_NAME, "find-text").click()
+        #GetTarget.click()
+        #GetTarget = driver.find_element_by_xpath('//div/div[2]/div[2]/div/div[1]/div[2]/div[2]/ul/li[9]/a/span')
+        #GetTarget.send_keys(Keys.ARROW_DOWN)
+
+        #test
+
+        #GetTarget = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/div[1]/div[2]/div[2]/ul/li[25]/a/span/span')
+        #GetTarget.click()
         time.sleep(2)
 
     if __name__ == '__main__':
         unittest.main()
 
     def test_3NewPjctFormBlock(self):
+        wait.until(EC.element_to_be_clickable((By.ID, 'btnCloseForm')))      #test
         _ = driver.find_element_by_xpath("//form/div/div[2]/div[2]/div/div[4]/b")
         nameOfpjct = driver.find_element_by_xpath("//form/div/div[2]/div[4]/div/textarea")
 
@@ -101,12 +112,14 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
         autorDown = driver.find_element_by_xpath("//form/div/div[2]/div[8]/div/span/span[1]/span/span[2]")
         autorDown.click()
         autorName = driver.find_element_by_xpath("html/body/span/span/span[1]/input")
-        autorName.send_keys("Багрее")
+        autorName.send_keys(Keys.ARROW_DOWN)
+        autorName.send_keys(Keys.ARROW_DOWN)
+        #autorName.send_keys("Багрее")
         autorName.send_keys(Keys.ENTER)
         pjctMansger = driver.find_element_by_xpath("//form/div/div[2]/div[9]/div/span/span[1]/span/span[2]")
         pjctMansger.click()
         pjctMansgerName = driver.find_element_by_xpath("html/body/span/span/span[1]/input")
-        pjctMansgerName.send_keys(Keys.DOWN)
+        pjctMansgerName.send_keys(Keys.ARROW_DOWN)
         pjctMansgerName.send_keys(Keys.ENTER)
 
     if __name__ == '__main__':
@@ -132,10 +145,22 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
 
 class DSeleniumEditProject(unittest.TestCase):
     def test_1CheckPage(self):
+        #self.assertEqual()
+        # <i class="fa fa-spinner fa-spin fa-2x"></i>
         # проверить элементы на странице
-        time.sleep(3)
-        _ = WebDriverWait(driver, 10)
-        #_ = wait.until(EC.element_to_be_clickable((By.NAME, 'yt0')))
+        time.sleep(5)
+        driver.set_page_load_timeout(5)
+        try:
+            driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/div[2]/div[2]/div[2]/i').size()
+        except Exception:
+            print('Тест завершен с ошибкой!')
+        finally:
+            driver.save_screenshot('BlockError.png')
+            print('Нет возможности завершить создание Блока, страница не прогружается, см. скриншот BlockError')
+            driver.close()
+        # repair it
+        _ = WebDriverWait(driver, 50)
+        _ = wait.until(EC.element_to_be_clickable((By.NAME, 'yt0')))
         EditProject = driver.find_element_by_name('yt0')
         EditProject.send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
