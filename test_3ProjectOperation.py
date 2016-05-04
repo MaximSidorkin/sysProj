@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 driver = webdriver.Firefox()
-driver.get("http://dev.eor.gosapi.ru/")
+driver.get("http://shmyrev.eor.gosapi.ru/site/login")
 driver.maximize_window()
 wait = WebDriverWait(driver, 10)
 
@@ -150,14 +150,14 @@ class DSeleniumEditProject(unittest.TestCase):
         # проверить элементы на странице
         time.sleep(5)
         driver.set_page_load_timeout(5)
-        try:
-            driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/div[2]/div[2]/div[2]/i').size()
-        except Exception:
-            print('Тест завершен с ошибкой!')
-        finally:
-            driver.save_screenshot('BlockError.png')
-            print('Нет возможности завершить создание Блока, страница не прогружается, см. скриншот BlockError')
-            driver.close()
+        #try:
+        #    driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/div[2]/div[2]/div[2]/i').size()
+        #except Exception:
+        #    print('Тест завершен с ошибкой!')
+        #finally:
+        #    driver.save_screenshot('BlockError.png')
+        #    print('Нет возможности завершить создание Блока, страница не прогружается, см. скриншот BlockError')
+        #    driver.close()
         # repair it
         _ = WebDriverWait(driver, 50)
         _ = wait.until(EC.element_to_be_clickable((By.NAME, 'yt0')))
