@@ -32,7 +32,7 @@ class ASeleniumLogin(unittest.TestCase):
     def test_3SendIncorrectLogPass(self):
         assert "Login" in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
-        elem = driver.find_element_by_id("LoginForm_usernam")
+        elem = driver.find_element_by_id("LoginForm_username")
         elem.send_keys('123')
         elem = driver.find_element_by_id("LoginForm_password")
         elem.send_keys('123')
