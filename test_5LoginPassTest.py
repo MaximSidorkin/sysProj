@@ -23,22 +23,16 @@ class ASeleniumLogin(unittest.TestCase):
         elem.click()
         elem.send_keys(Keys.RETURN)
 
-        if __name__ == '__main__':
-            unittest.main()
-
     def test_2NoSendLogPass(self):
         assert "Login" in driver.title
         ErrTextLogin = driver.find_element_by_id('LoginForm_username_em_').text == 'Логин'
         ErrTextPassw = driver.find_element_by_id('LoginForm_password_em_').text == 'Пароль'
         time.sleep(4)
 
-        if __name__ == '__main__':
-            unittest.main()
-
     def test_3SendIncorrectLogPass(self):
         assert "Login" in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
-        elem = driver.find_element_by_id("LoginForm_username")
+        elem = driver.find_element_by_id("LoginForm_usernam")
         elem.send_keys('123')
         elem = driver.find_element_by_id("LoginForm_password")
         elem.send_keys('123')
