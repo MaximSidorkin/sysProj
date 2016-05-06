@@ -169,6 +169,29 @@ class DSeleniumFillingForm(unittest.TestCase):
         time.sleep(2)
         triggerAL.click()
 
+    def test_5ConfirmCreation(self):
+        elem = driver.find_element_by_xpath('//div[2]/div[2]/div[4]/form/div/div[2]/div[24]/input[2]')
+        elem.click()
+        time.sleep(3)
+        wait = WebDriverWait(driver, 10)
+        wait.until(EC.element_to_be_clickable((By.XPATH, '//div[4]/div/div[2]/div/div[2]/div[11]/input[3]')))
+        _ = driver.find_element_by_xpath('//div[2]/div[4]/div/div[2]/div/div[1]/div[1]').text == 'Паспорт Контрольной'
+    def test_6DeleteSubTask(self):
+        time.sleep(2)
+        deleteButton = driver.find_element_by_xpath('//div[4]/div/div[2]/div/div[2]/div[11]/input[3]')
+        deleteButton.click()
+        time.sleep(1)
+        elemYes = driver.find_element_by_xpath('html/body/div[3]/div[3]/div/button[1]')
+        elemYes.click()
+
+        assert "500" not in driver.title  # проверка на 500/404 ошибку
+        assert "404" not in driver.title
+
+
+    if __name__ == '__main__':
+        unittest.main()
+
+
 
 
 
