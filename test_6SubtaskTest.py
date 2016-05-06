@@ -180,7 +180,7 @@ class DSeleniumFillingForm(unittest.TestCase):
         time.sleep(2)
         deleteButton = driver.find_element_by_xpath('//div[4]/div/div[2]/div/div[2]/div[11]/input[3]')
         deleteButton.click()
-        time.sleep(1)
+        time.sleep(2)
         elemYes = driver.find_element_by_xpath('html/body/div[3]/div[3]/div/button[1]')
         elemYes.click()
 
