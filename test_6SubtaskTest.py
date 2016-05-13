@@ -78,7 +78,7 @@ class CSeleniumSubtask_3(unittest.TestCase):
         time.sleep(1)
         findProject = driver.find_element_by_link_text('Для контрольной точки')
         findProject.click()
-        time.sleep(1)
+        time.sleep(3)
         CreateSubtask = driver.find_element_by_xpath('//div[2]/div[2]/div[3]/div/div[1]/div/div/button[1]')
         CreateSubtask.click()
         time.sleep(1)

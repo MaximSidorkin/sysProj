@@ -186,6 +186,15 @@ class DSeleniumEditProject(unittest.TestCase):
         _ = driver.find_element_by_id('C_TITLE').text == ' edit '
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+        # catch 500 error
+        #try:
+        #    if driver.find_element_by_id("500ErrorTitle"):
+        #        return  False
+        #except SystemError:
+        #    print('500 error found here!')
+        #else:
+        #    print('500 error was not found')
+        #    return True
 
     if __name__ == '__main__':
         unittest.main()
