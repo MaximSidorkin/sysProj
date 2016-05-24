@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 driver = webdriver.Firefox()
-driver.get("http://dev.eor.gosapi.ru/")
+driver.get("http://dev.eor.gosapi.ru/site/login")
 driver.maximize_window()
 wait = WebDriverWait(driver, 10)
 
@@ -231,11 +231,11 @@ class FSeleniumSeekAndDestroy(unittest.TestCase):
         DelCP = driver.find_element_by_xpath('//div[2]/div[4]/div[2]/div[2]/div[3]/div/div[1]/div/div/button[3]')
         DelCP.click()
         time.sleep(1)
-        elemNo = driver.find_element_by_xpath("html/body/div[3]/div[3]/div/button[2]")
+        elemNo = driver.find_element_by_xpath("//div[3]/div/button[2]")
         elemNo.click()
         DelCP.click()
         time.sleep(1)
-        elemYes = driver.find_element_by_xpath('html/body/div[3]/div[3]/div/button[1]')
+        elemYes = driver.find_element_by_xpath('//div[3]/div/button')
         elemYes.click()
 
 

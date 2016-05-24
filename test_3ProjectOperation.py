@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 driver = webdriver.Firefox()
-driver.get("http://dev.eor.gosapi.ru/site/login")
+driver.get("http://dev.eor.gosapi.ru/")
 driver.maximize_window()
 wait = WebDriverWait(driver, 10)
 
@@ -207,7 +207,7 @@ class DSeleniumEditProject(unittest.TestCase):
        time.sleep(3)
        elemSearch = driver.find_element_by_id('search-text')
        elemSearch.click()
-       elemSearch.send_keys(' edit ')
+       elemSearch.send_keys('Тестовый проект созданный Selenium edit ')
        elemSearch.send_keys(Keys.ENTER)
        time.sleep(2)
        elemTestBlock = driver.find_element_by_xpath('//div[2]/div[2]/div/table/tbody/tr/td[1]/h4')
@@ -216,11 +216,12 @@ class DSeleniumEditProject(unittest.TestCase):
        DelProject = driver.find_element_by_xpath('//div[2]/div[2]/div[2]/table/tbody/tr/td[2]/button[2]')
        DelProject.click()
        time.sleep(2)
-       elemNo = driver.find_element_by_xpath("html/body/div[3]/div[3]/div/button[2]")
+       elemNo = driver.find_element_by_xpath("//div[3]/div/button[2]")
        elemNo.click()
        DelProject.click()
        time.sleep(3)
-       elemYes = driver.find_element_by_xpath('html/body/div[3]/div[3]/div/button[1]')
+       driver.implicitly_wait(10)
+       elemYes = driver.find_element_by_xpath('//div[3]/div/button')
        elemYes.click()
 
     if __name__ == '__main__':

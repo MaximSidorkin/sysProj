@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 driver = webdriver.Firefox()
-driver.get("http://dev.eor.gosapi.ru/")
+driver.get("http://dev.eor.gosapi.ru")
 driver.maximize_window()
 wait = WebDriverWait(driver, 10)
 
@@ -181,7 +181,7 @@ class DSeleniumFillingForm(unittest.TestCase):
         deleteButton = driver.find_element_by_xpath('//div[4]/div/div[2]/div/div[2]/div[11]/input[3]')
         deleteButton.click()
         time.sleep(2)
-        elemYes = driver.find_element_by_xpath('html/body/div[3]/div[3]/div/button[1]')
+        elemYes = driver.find_element_by_xpath('//div[3]/div/button')
         elemYes.click()
 
         assert "500" not in driver.title  # проверка на 500/404 ошибку
