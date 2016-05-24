@@ -73,15 +73,12 @@ class CSeleniumSubtask_3(unittest.TestCase):
         ConfirmFilter = driver.find_element_by_xpath('//div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/ul/li[4]/button[2]')
         ConfirmFilter.click()
         time.sleep(3)
-        findBlock = driver.find_element_by_link_text('Тестовый проект созданный Selenium')
-        findBlock.click()
-        time.sleep(1)
-        findProject = driver.find_element_by_link_text('Для контрольной точки')
-        findProject.click()
-        time.sleep(3)
-        CreateSubtask = driver.find_element_by_xpath('//div[2]/div[2]/div[3]/div/div[1]/div/div/button[1]')
-        CreateSubtask.click()
-        time.sleep(1)
+        findeBlock = driver.find_element_by_xpath('//a[contains(text(),"Тестовый проект созданный Selenium")]').click()
+        time.sleep(2)
+        findeProject = driver.find_element_by_xpath('//div[2]/table/tbody/tr/td/h4/strong/a').click()
+        time.sleep(2)
+        plusST = driver.find_element_by_xpath('//div[@id="item-toolbar"]/button').click()
+        print('STOP!')
 
     def test_3Not500or404(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
@@ -93,6 +90,7 @@ class DSeleniumFillingForm(unittest.TestCase):
         _ = driver.find_element_by_id('cp_title').text == 'Создание контрольной точки'
         _ = driver.find_element_by_class_name('warn-cp').text == 'контрольную точку'
         EditProject = driver.find_element_by_name('yt0')
+        time.sleep(2)
         EditProject.send_keys(Keys.PAGE_DOWN)
         EditProject.click()
         assert "500" not in driver.title  # проверка на 500/404 ошибку
