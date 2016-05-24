@@ -10,14 +10,17 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 dev = 'http://dev.eor.gosapi.ru/'
 test = 'http://test.eor.gosapi.ru/'
+dev1 = 'http://minakov.eor.gosapi.ru/'
+dev2 = 'http://shmyrev.eor.gosapi.ru/'
 
 driver = webdriver.Firefox()
 driver.get(dev)
 driver.maximize_window()
 wait = WebDriverWait(driver, 10)
+driver.implicitly_wait(10)
 
 class ASeleniumAutoTest_1(unittest.TestCase):
-    def test_1CreatedInEORDev(self):
+    def test001_CreatedInEORDev(self):
         assert "Login" in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         elem = driver.find_element_by_id("LoginForm_username")
@@ -25,7 +28,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         elem = driver.find_element_by_id("LoginForm_password")
         elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
-    def test_2Not500or404andLoginIsVisible(self):
+    def test002_Not500or404andLoginIsVisible(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
@@ -35,7 +38,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
             # open desktop
 
 class BSeleniumOpenAllPjct_2(unittest.TestCase):
-    def test_1OpenAllPjct(self):
+    def test001_OpenAllPjct(self):
         #time.sleep(3)
         _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
         assert "ЭОР" in driver.title
@@ -44,7 +47,7 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         time.sleep(4)
         allpj = driver.find_element_by_link_text("Все проекты")
         allpj.click()
-    def test_2Not500or404(self):
+    def test002_Not500or404(self):
         title = wait.until(EC.title_is('ЭОР - Checkpoint'))
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -53,12 +56,12 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         if __name__ == '__main__':
             unittest.main()
 
-    def test_3Schedule(self):
+    def test003_Schedule(self):
         schedul = driver.find_element_by_link_text("Расписание")
         schedul.click()
         _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'add-meeting')))
 
-    def test_4Not500or404(self):
+    def test004_Not500or404(self):
         title = wait.until(EC.title_is('ЭОР - Default'))
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -67,12 +70,12 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         if __name__ == '__main__':
             unittest.main()
 
-    def test_5Question(self):
+    def test005_Question(self):
         question = driver.find_element_by_link_text("Вопросы/Приоритеты")
         question.click()
         _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'navbar-header')))
 
-    def test_6Not500or404(self):
+    def test006_Not500or404(self):
         title = wait.until(EC.title_is('ЭОР - Question'))
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -81,12 +84,12 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         if __name__ == '__main__':
             unittest.main()
 
-    def test_7Material(self):
+    def test007_Material(self):
         material = driver.find_element_by_link_text("Материалы")
         material.click()
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'search-a')))
 
-    def test_8Not500or404(self):
+    def test008_Not500or404(self):
         title = wait.until(EC.title_is('ЭОР - Material'))
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -95,12 +98,12 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         if __name__ == '__main__':
             unittest.main()
 
-    def test_9Npa(self):
+    def test009_Npa(self):
         npa = driver.find_element_by_link_text("Нормативно-правовые акты")
         npa.click()
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'search-show')))
 
-    def test_9aNot500or404(self):
+    def test010_Not500or404(self):
         title = wait.until(EC.title_is('ЭОР - Npa'))
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -109,18 +112,18 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         if __name__ == '__main__':
              unittest.main()
 
-    def test_9bDocument(self):
+    def test011_Document(self):
         document = driver.find_element_by_link_text("Библиотека")
         document.click()
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'search-show')))
 
-    def test_9cNot500or404(self):
+    def test012_Not500or404(self):
         title = wait.until(EC.title_is('ЭОР - Document'))
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         assert "ЭОР - Document" in driver.title
 
-    def test_9dReport(self):
+    def test013_Report(self):
         report = driver.find_element_by_link_text("Отчёты")
         report.click()
         time.sleep(1)
@@ -150,12 +153,12 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         assert "404" not in driver.title
         assert "ЭОР - Rating" in driver.title
 
-    def test_9eAdmin(self):
+    def test014_Admin(self):
         admin = driver.find_element_by_link_text("Администрирование")
         admin.click()
         time.sleep(1)
         # Пользователи
-    def test_9fUsers(self):
+    def test015_Users(self):
         users = driver.find_element_by_link_text('Пользователи')
         users.click()
         title = wait.until(EC.title_is('ЭОР - User'))
@@ -166,7 +169,7 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         assert "404" not in driver.title
         assert "ЭОР - User" in driver.title
         # Роли
-    def test_9gRole(self):
+    def test016_Role(self):
         users = driver.find_element_by_link_text('Роли')
         users.click()
         title = wait.until(EC.title_is('ЭОР - Role'))
@@ -177,7 +180,7 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         assert "404" not in driver.title
         assert "ЭОР - Role" in driver.title
         # Привилегии
-    def test_9hPrivilege(self):
+    def test017_Privilege(self):
         users = driver.find_element_by_link_text('Привилегии')
         users.click()
         title = wait.until(EC.title_is('ЭОР - Privilege'))
@@ -188,12 +191,12 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         assert "404" not in driver.title
         assert "ЭОР - Privilege" in driver.title
         # Журналы
-    def test_9iJournal(self):
+    def test018_Journal(self):
         journ = driver.find_element_by_link_text("Журналы")
         journ.click()
         time.sleep(1)
         # Авторизации
-    def test_9jLogs(self):
+    def test019_Logs(self):
         autor = driver.find_element_by_link_text("Авторизации")
         autor.click()
         title = wait.until(EC.title_is('ЭОР - Logs'))
@@ -204,7 +207,7 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         assert "404" not in driver.title
         assert "ЭОР - Logs" in driver.title
         # Обмен данными
-    def test_9kData(self):
+    def test020_Data(self):
         autor = driver.find_element_by_link_text("Обмен данными")
         autor.click()
         title = wait.until(EC.title_is('ЭОР - Data'))
@@ -215,7 +218,7 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         assert "404" not in driver.title
         assert "ЭОР - Data" in driver.title
         # Операции пользователя
-    def test_9lOperation(self):
+    def test021_Operation(self):
         autor = driver.find_element_by_link_text("Операции пользователя")
         autor.click()
         title = wait.until(EC.title_is('ЭОР - Operation'))
@@ -226,7 +229,7 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         assert "404" not in driver.title
         assert "ЭОР - Operation" in driver.title
         # Справочники
-    def test_9mDictionary(self):
+    def test022_Dictionary(self):
         dictionary = driver.find_element_by_link_text("Справочники")
         dictionary.click()
         title = wait.until(EC.title_is('ЭОР - Dictionary'))
@@ -236,12 +239,12 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         # Приложения
-    def test_9nApps(self):
+    def test023_Apps(self):
         apps = driver.find_element_by_link_text("Приложения")
         apps.click()
         time.sleep(1)
         # Управление iPad ЭОР
-    def test_9oIpad(self):
+    def test024_Ipad(self):
         driv = driver.find_element_by_link_text("Управление iPad ЭОР")
         driv.click()
         title = wait.until(EC.title_is('ЭОР - Ipad'))
@@ -251,12 +254,12 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         # Структура данных
-    def test_9pStruct(self):
+    def test025_Struct(self):
         struc = driver.find_element_by_link_text("Структура данных")
         struc.click()
         time.sleep(1)
         # Управление структурой
-    def test_9rAdminStr(self):
+    def test026_AdminStr(self):
         admStr = driver.find_element_by_link_text("Управление структурой")
         admStr.click()
         title = wait.until(EC.title_is('ЭОР - Gii'))
@@ -264,7 +267,7 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         # Управление хранилищем данных
-    def test_9sDatabase(self):
+    def test027_Database(self):
         database = driver.find_element_by_link_text("Управление хранилищем данных")
         database.click()
         title = wait.until(EC.title_is('ЭОР - Database'))
@@ -272,7 +275,7 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         # Ресурсы ИС
-    def test_9tResource(self):
+    def test028_Resource(self):
         res = driver.find_element_by_link_text("Ресурсы ИС")
         res.click()
         time.sleep(1)
