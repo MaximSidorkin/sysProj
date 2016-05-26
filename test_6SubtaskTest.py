@@ -73,9 +73,9 @@ class CSeleniumSubtask_3(unittest.TestCase):
         ConfirmFilter = driver.find_element_by_xpath('//div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/ul/li[4]/button[2]')
         ConfirmFilter.click()
         time.sleep(3)
-        findeBlock = driver.find_element_by_xpath('//a[contains(text(),"Тестовый проект созданный Selenium")]').click()
+        findeBlock = driver.find_element_by_xpath('(//a[contains(text(),"Создал Selenium _для редактирования")])[3]').click()
         time.sleep(2)
-        findeProject = driver.find_element_by_xpath('//div[2]/table/tbody/tr/td/h4/strong/a').click()
+        findeProject = driver.find_element_by_link_text("Тестовый проект созданный Selenium").click()
         time.sleep(2)
         plusST = driver.find_element_by_xpath('//div[@id="item-toolbar"]/button').click()
         print('STOP!')
@@ -100,7 +100,7 @@ class DSeleniumFillingForm(unittest.TestCase):
 
     def test_2CheckWarningMsg(self):
         assert "ЭОР" in driver.title
-        time.sleep(2)
+        time.sleep(3)
         _ = driver.find_element_by_id('Checkpoint_TITLE_em_').text == 'Необходимо заполнить поле «Название».'
         _ = driver.find_element_by_id('Checkpoint_ID_AUTHOR_MISSION_em_').text == 'заполнить поле «Автор поручения».'
         _ = driver.find_element_by_id('Checkpoint_ID_RESPONSIBLE_em_').text == 'заполнить поле «Ответственный».'
@@ -118,15 +118,15 @@ class DSeleniumFillingForm(unittest.TestCase):
         nameCP.send_keys("Подзадача созданная Selenium")
         time.sleep(2)
         # автор
-        autorName = driver.find_element_by_xpath('//form/div/div[2]/div[9]/div/span/span[1]/span/span[1]')
-        autorName.click()
+        autorName = driver.find_element_by_xpath("//div[@id='DIV_AUTHOR_MISSION']/div/span/span/span/span[2]").click()
+        #autorName.click()
         autorNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         autorNameText.send_keys('Багреева')
         autorNameText.send_keys(Keys.ENTER)
         time.sleep(2)
         # ответственный
-        responsibleName = driver.find_element_by_xpath('//form/div/div[2]/div[10]/div/span/span[1]/span/span[1]')
-        responsibleName.click()
+        responsibleName = driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]").click()
+        #responsibleName.click()
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleNameText.send_keys('DIT')
         time.sleep(2)
@@ -145,36 +145,36 @@ class DSeleniumFillingForm(unittest.TestCase):
         EditProject.send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
         # туда
-        triggerKPI = driver.find_element_by_xpath('//form/div/div[2]/div[18]/div/div/div/label')
+        triggerKPI = driver.find_element_by_css_selector('span.switch-right')
         triggerKPI.click()
         time.sleep(1)
-        triggerPriority = driver.find_element_by_xpath('//form/div/div[2]/div[19]/div/div/div/label')
+        triggerPriority = driver.find_element_by_xpath('//div[20]/div/div/div/span[2]')
         triggerPriority.click()
         time.sleep(1)
-        triggerDone = driver.find_element_by_xpath('//form/div/div[2]/div[20]/div/div[1]/div/label')
+        triggerDone = driver.find_element_by_xpath("//div[21]/div/div/div/span[2]")
         triggerDone.click()
         time.sleep(1)
         # и обратно
-        triggerKPI.click()
+        triggerKPI = driver.find_element_by_xpath("//div[19]/div/div/div/label").click()
         time.sleep(1)
-        triggerPriority.click()
+        triggerPriority = driver.find_element_by_xpath("//div[20]/div/div/div/label").click()
         time.sleep(1)
-        triggerDone.click()
+        triggerDone = driver.find_element_by_xpath("//div[21]/div/div/div/label").click()
         time.sleep(1)
 
         # ещё один триггер
-        triggerAL = driver.find_element_by_xpath('//form/div/div[2]/div[23]/div[1]/div[2]/div[3]/div/div/div/label')
+        triggerAL = driver.find_element_by_xpath('//div[3]/div/div/div/span[2]')
         triggerAL.click()
         _ = driver.find_element_by_class_name('col-sm-5')
         time.sleep(2)
-        triggerAL.click()
+        triggerAL = driver.find_element_by_xpath("//div[3]/div/div/div/span").click()
 
     def test_5ConfirmCreation(self):
-        elem = driver.find_element_by_xpath('//div[2]/div[2]/div[4]/form/div/div[2]/div[24]/input[2]')
+        elem = driver.find_element_by_name('yt0')
         elem.click()
         time.sleep(3)
         wait = WebDriverWait(driver, 10)
-        wait.until(EC.element_to_be_clickable((By.XPATH, '//div[4]/div/div[2]/div/div[2]/div[11]/input[3]')))
+        #wait.until(EC.element_to_be_clickable((By.XPATH, '//div[4]/div/div[2]/div/div[2]/div[11]/input[3]')))
         _ = driver.find_element_by_xpath('//div[2]/div[4]/div/div[2]/div/div[1]/div[1]').text == 'Паспорт Контрольной'
     def test_6DeleteSubTask(self):
         time.sleep(2)
