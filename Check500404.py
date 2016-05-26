@@ -12,6 +12,7 @@ dev = 'http://dev.eor.gosapi.ru/'
 test = 'http://test.eor.gosapi.ru/'
 dev1 = 'http://minakov.eor.gosapi.ru/'
 dev2 = 'http://shmyrev.eor.gosapi.ru/'
+tronov = 'http://tronov.eor.gosapi.ru/'
 
 driver = webdriver.Firefox()
 driver.get(dev)
