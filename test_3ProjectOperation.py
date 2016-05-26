@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 driver = webdriver.Firefox()
-driver.get("http://test.eor.gosapi.ru/")
+driver.get("http://dev.eor.gosapi.ru/")
 driver.maximize_window()
 wait = WebDriverWait(driver, 10)
 
@@ -73,16 +73,7 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
         SrcSelenBlock = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/div[1]/div[2]/div[1]/input')
         SrcSelenBlock.send_keys('Selenium')
         time.sleep(2)
-        # test
         GetTarget = driver.find_element(By.CLASS_NAME, "find-text").click()
-        #GetTarget.click()
-        #GetTarget = driver.find_element_by_xpath('//div/div[2]/div[2]/div/div[1]/div[2]/div[2]/ul/li[9]/a/span')
-        #GetTarget.send_keys(Keys.ARROW_DOWN)
-
-        #test
-
-        #GetTarget = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/div[1]/div[2]/div[2]/ul/li[25]/a/span/span')
-        #GetTarget.click()
         time.sleep(2)
 
     if __name__ == '__main__':
@@ -91,74 +82,25 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
     def test_3NewPjctFormBlock(self):
         wait.until(EC.element_to_be_clickable((By.ID, 'btnCloseForm')))      #test
         _ = driver.find_element_by_xpath("//form/div/div[2]/div[2]/div/div[4]/b")
-        nameOfpjct = driver.find_element_by_xpath("//form/div/div[2]/div[4]/div/textarea")
-
-        #nameOfpjct.click()  #test
-        #time.sleep(1)
-        #otherFild = driver.find_element_by_xpath('//div[2]/div[2]/div[2]/form/div/div[2]/div[6]/div/textarea')  #test
-        #time.sleep(1)
-        #otherFild.click()   #test
-        #time.sleep(1)
-        #otherFild.send_keys('1')
-        #driver.find_element_by_xpath('//div[2]/div[2]/div[3]/form/div/div[2]/div[4]/div/div')   #test
-        #time.sleep(1)
-        #nameOfpjct = driver.find_element_by_xpath("//form/div/div[2]/div[4]/div/textarea")# test
-
+        nameOfpjct = driver.find_element_by_id("Checkpoint_TITLE")#.send_keys("Тестовый проект созданный Selenium")
         nameOfpjct.click()  #test
         nameOfpjct.send_keys("Тестовый проект созданный Selenium")
-
         time.sleep(2)
         _ = driver.find_element_by_class_name('warn-cp').text == 'проект'   # test
-        autorDown = driver.find_element_by_xpath("//form/div/div[2]/div[8]/div/span/span[1]/span/span[2]")
-        autorDown.click()
-        autorName = driver.find_element_by_xpath("html/body/span/span/span[1]/input")
-        autorName.send_keys(Keys.ARROW_DOWN)
-        autorName.send_keys(Keys.ARROW_DOWN)
-        #autorName.send_keys("Багрее")
-        autorName.send_keys(Keys.ENTER)
-        pjctMansger = driver.find_element_by_xpath("//form/div/div[2]/div[9]/div/span/span[1]/span/span[2]")
-        pjctMansger.click()
-        pjctMansgerName = driver.find_element_by_xpath("html/body/span/span/span[1]/input")
-        pjctMansgerName.send_keys(Keys.ARROW_DOWN)
-        pjctMansgerName.send_keys(Keys.ENTER)
-
-    if __name__ == '__main__':
-        unittest.main()
-
-    def test_4CheckNoYesIsAvalible(self):
-        NoElem = driver.find_element_by_xpath("//form/div/div[2]/div[20]/div/div[1]/div/label")
-        NoElem.click()
-        time.sleep(1)
-        No2Elem = driver.find_element_by_xpath("//form/div/div[2]/div[21]/div/div[1]/div/label")
-        No2Elem.click()
-        time.sleep(1)
-        YesElem = driver.find_element_by_xpath("//form/div/div[2]/div[20]/div/div[1]/div/label")
-        YesElem.click()
-
-    if __name__ == '__main__':
-        unittest.main()
+        autorDown = driver.find_element_by_xpath("//div[@id='DIV_AUTHOR_MISSION']/div/span/span/span/span[2]").click()
+        autorName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("багреева" + Keys.ENTER)
+        pjctMansger = driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]").click()
+        pjctMansgerName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("DIT" + Keys.ENTER)
 
     def test_5ConfirmCreatingPjct(self):
         time.sleep(1)
-        CreateButton = driver.find_element_by_xpath("//form/div/div[2]/div[23]/input[2]")
-        CreateButton.click()
+        CreateButton = driver.find_element_by_name("yt0").click()
 
 class DSeleniumEditProject(unittest.TestCase):
     def test_1CheckPage(self):
-        #self.assertEqual()
-        # <i class="fa fa-spinner fa-spin fa-2x"></i>
         # проверить элементы на странице
         time.sleep(5)
         driver.set_page_load_timeout(5)
-        #try:
-        #    driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/div[2]/div[2]/div[2]/i').size()
-        #except Exception:
-        #    print('Тест завершен с ошибкой!')
-        #finally:
-        #    driver.save_screenshot('BlockError.png')
-        #    print('Нет возможности завершить создание Блока, страница не прогружается, см. скриншот BlockError')
-        #    driver.close()
-        # repair it
         _ = WebDriverWait(driver, 50)
         _ = wait.until(EC.element_to_be_clickable((By.NAME, 'yt0')))
         EditProject = driver.find_element_by_name('yt0')
@@ -166,17 +108,11 @@ class DSeleniumEditProject(unittest.TestCase):
         time.sleep(1)
         EditProject.click()
 
-    if __name__ == '__main__':
-        unittest.main()
-
     def test_2editProject(self):
         time.sleep(4)
-        ShortName = driver.find_element_by_xpath("//form/div/div[2]/div[5]/div/textarea")
-        ShortName.send_keys("Краткое наименование")
-        FullName = driver.find_element_by_xpath("//form/div/div[2]/div[4]/div/textarea")
-        FullName.send_keys(" edit ")
-        SaveEdit = driver.find_element_by_xpath('//form/div/div[2]/div[22]/input[2]')
-        SaveEdit.click()
+        ShortName = driver.find_element_by_id("Checkpoint_SHORT_NAME").send_keys("Краткое наименование")
+        FullName = driver.find_element_by_id("Checkpoint_TITLE").send_keys(" edit ")
+        SaveEdit = driver.find_element_by_name('yt0').click()
 
     if __name__ == '__main__':
         unittest.main()
@@ -186,18 +122,6 @@ class DSeleniumEditProject(unittest.TestCase):
         _ = driver.find_element_by_id('C_TITLE').text == ' edit '
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
-        # catch 500 error
-        #try:
-        #    if driver.find_element_by_id("500ErrorTitle"):
-        #        return  False
-        #except SystemError:
-        #    print('500 error found here!')
-        #else:
-        #    print('500 error was not found')
-        #    return True
-
-    if __name__ == '__main__':
-        unittest.main()
 
     def test_4SeekAndDestroy(self):
        time.sleep(3)
