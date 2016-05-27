@@ -185,7 +185,7 @@ class ESeleniumEditCP(unittest.TestCase):
     def test_3AllRight(self):
         time.sleep(4)
         driver.implicitly_wait(20)
-        #_ = driver.find_element_by_id('C_TITLE').text == ' редактировано '
+        _ = driver.find_element_by_id('C_TITLE').text == ' редактировано '
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
