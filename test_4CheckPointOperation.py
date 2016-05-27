@@ -157,10 +157,6 @@ class DSeleniumTestCPForm(unittest.TestCase):
         assert "404" not in driver.title
         time.sleep(3)
 
-
-    if __name__ == '__main__':
-        unittest.main()
-
 class ESeleniumEditCP(unittest.TestCase):
     def test_1ClickEditButton(self):
         editButton = driver.find_element_by_name('yt0')
