@@ -192,6 +192,7 @@ class ESeleniumEditCP(unittest.TestCase):
 class FSeleniumSeekAndDestroy(unittest.TestCase):
     def test_1FilterSetting(self):
         assert "ЭОР" in driver.title
+        '''
         FilterSetting = driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/a/span')
         FilterSetting.click()
         SnipClick = driver.find_element_by_xpath('//nav/div/div[2]/ul[2]/li/ul/li[3]/div/ul/li[1]/div/label[1]/div')
@@ -199,6 +200,7 @@ class FSeleniumSeekAndDestroy(unittest.TestCase):
         ConfirmFilter = driver.find_element_by_xpath('//div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/ul/li[4]/button[2]')
         ConfirmFilter.click()
         time.sleep(3)
+        '''
 
     def test_2TextFilterSetting(self):
         ClearText = driver.find_element_by_css_selector('span.clear').click()

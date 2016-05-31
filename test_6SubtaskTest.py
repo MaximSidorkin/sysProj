@@ -66,12 +66,14 @@ class CSeleniumSubtask_3(unittest.TestCase):
     def test_2FilterSetting(self):
         assert "ЭОР" in driver.title
         time.sleep(2)
+        '''
         FilterSetting = driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/a/span')
         FilterSetting.click()
         SnipClick = driver.find_element_by_xpath('//nav/div/div[2]/ul[2]/li/ul/li[3]/div/ul/li[1]/div/label[1]/div')
         SnipClick.click()
         ConfirmFilter = driver.find_element_by_xpath('//div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/ul/li[4]/button[2]')
         ConfirmFilter.click()
+        '''
         time.sleep(3)
         findeBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования').click()
         time.sleep(2)
