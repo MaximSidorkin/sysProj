@@ -26,8 +26,8 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_2Not500or404andLoginIsVisible(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+        time.sleep(3)
         _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
-
         if __name__ == '__main__':
             unittest.main()
 
