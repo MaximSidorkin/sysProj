@@ -157,8 +157,8 @@ class DSeleniumFillingForm(unittest.TestCase):
         triggerDone.click()
         time.sleep(1)
         # и обратно
-        triggerKPI = driver.find_element_by_xpath("//div[19]/div/div/div/label").click()
-        time.sleep(1)
+        #triggerKPI = driver.find_element_by_xpath("//div[19]/div/div/div/label").click()
+        #time.sleep(1)
         triggerPriority = driver.find_element_by_xpath("//div[20]/div/div/div/label").click()
         time.sleep(1)
         triggerDone = driver.find_element_by_xpath("//div[21]/div/div/div/label").click()

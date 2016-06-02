@@ -98,24 +98,32 @@ class CSeleniumCreateNewCP(unittest.TestCase):
 
 class DSeleniumTestCPForm(unittest.TestCase):
     def test_1FillingCPForm(self):
+
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
         _ = driver.find_element_by_class_name('warn-cp').text == 'контрольную точку'  # test
         time.sleep(1)
         #имя контрольной точки
         nameCP = driver.find_element_by_id('Checkpoint_TITLE').send_keys("контрольная точка созданная Selenium")
-        time.sleep(1)
+        time.sleep(2)
         #автор
-        autorName = driver.find_element_by_xpath('//div[9]/div/span/span/span/span[2]')
+        driver.implicitly_wait(10)
+        autorName = driver.find_element_by_xpath('//form/div/div[2]/div[10]/div/span/span/span/span[2]')
+        _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//form/div/div[2]/div[10]/div/span/span/span/span[2]')))
         autorName.click()
+        time.sleep(2)
+        driver.implicitly_wait(10)
         autorNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         autorNameText.send_keys('Б' + Keys.ENTER)
         time.sleep(2)
         #ответственный
-        responsibleName = driver.find_element_by_xpath('//div[10]/div/span/span/span/span[2]')
+        driver.implicitly_wait(10)
+        responsibleName = driver.find_element_by_xpath("//form/div/div[2]/div[11]/div/span/span[1]/span/span[2]")
         responsibleName.click()
+        time.sleep(2)
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleNameText.send_keys('DIT' + Keys.ENTER)
         time.sleep(2)
+        driver.implicitly_wait(10)
         #сроки
         terms = driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('12345' + Keys.ENTER)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
@@ -139,9 +147,9 @@ class DSeleniumTestCPForm(unittest.TestCase):
         triggerDone.click()
         time.sleep(1)
         #и обратно
-        triggerKPI = driver.find_element_by_xpath('//div[18]/div/div/div/label')
-        triggerKPI.click()
-        time.sleep(1)
+        #triggerKPI = driver.find_element_by_xpath('//div[18]/div/div/div/label')
+        #triggerKPI.click()
+        #time.sleep(1)
         triggerPriority.click()
         time.sleep(1)
         triggerDone.click()
@@ -208,10 +216,10 @@ class FSeleniumSeekAndDestroy(unittest.TestCase):
         time.sleep(2)
 
     def test_3BlockAndProjectListing(self):
-        findBlock = driver.find_element_by_xpath('//div[2]/div[4]/div[2]/div[2]/div/table/tbody/tr/td[1]/h4/strong/a')
+        findBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования')
         findBlock.click()
         time.sleep(1)
-        findProject = driver.find_element_by_xpath('//div[2]/div[4]/div[2]/div[2]/div[2]/table/tbody/tr/td[1]/h4/strong/a')
+        findProject = driver.find_element_by_link_text('контрольная точка созданная Selenium')
         findProject.click()
         time.sleep(2)
 
