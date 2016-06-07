@@ -219,7 +219,7 @@ class FSeleniumSeekAndDestroy(unittest.TestCase):
         findBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования')
         findBlock.click()
         time.sleep(1)
-        findProject = driver.find_element_by_link_text('контрольная точка созданная Selenium')
+        findProject = driver.find_element_by_link_text('Тестовый проект созданный Selenium edit')
         findProject.click()
         time.sleep(2)
 

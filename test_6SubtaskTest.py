@@ -180,7 +180,7 @@ class DSeleniumFillingForm(unittest.TestCase):
         _ = driver.find_element_by_xpath('//div[2]/div[4]/div/div[2]/div/div[1]/div[1]').text == 'Паспорт Контрольной'
     def test_6DeleteSubTask(self):
         time.sleep(2)
-        deleteButton = driver.find_element_by_xpath('//div[4]/div/div[2]/div/div[2]/div[11]/input[3]')
+        deleteButton = driver.find_element_by_name('yt2')
         deleteButton.click()
         time.sleep(2)
         elemYes = driver.find_element_by_xpath('//div[3]/div/button')
