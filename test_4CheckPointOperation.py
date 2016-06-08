@@ -56,9 +56,9 @@ class CSeleniumCreateNewCP(unittest.TestCase):
     def test_1OpenForm(self):
         wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
-        btn1 = driver.find_element_by_id("create-cp")
-        btn1.click()
-        time.sleep(1)
+        #btn1 = driver.find_element_by_id("create-cp")
+        #btn1.click()
+        time.sleep(2)
         assert "ЭОР" in driver.title
         elem = driver.find_element_by_link_text('Поиск')
         elem.click()
@@ -66,7 +66,7 @@ class CSeleniumCreateNewCP(unittest.TestCase):
         elemSearch.click()
         elemSearch.send_keys('Selenium')
         elemSearch.send_keys(Keys.ENTER)
-        time.sleep(2)
+        time.sleep(3)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
     def test_2FindBlock(self):
@@ -137,20 +137,14 @@ class DSeleniumTestCPForm(unittest.TestCase):
         EditProject.send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
         #туда
-        triggerKPI = driver.find_element_by_css_selector('span.switch-right')
+        triggerKPI = driver.find_element_by_xpath("//div[@id='DIV_IS_PRIORITY']/div/div/div/label")
         triggerKPI.click()
         time.sleep(1)
-        triggerPriority = driver.find_element_by_xpath('//div[19]/div/div/div/span[2]')
-        triggerPriority.click()
-        time.sleep(1)
-        triggerDone = driver.find_element_by_xpath('//div[20]/div/div/div/span[2]')
+        triggerDone = driver.find_element_by_xpath("//div[@id='DIV_IS_DONE']/div/div/div/span[2]")
         triggerDone.click()
         time.sleep(1)
         #и обратно
-        #triggerKPI = driver.find_element_by_xpath('//div[18]/div/div/div/label')
-        #triggerKPI.click()
-        #time.sleep(1)
-        triggerPriority.click()
+        triggerKPI.click()
         time.sleep(1)
         triggerDone.click()
         time.sleep(1)
@@ -210,32 +204,10 @@ class FSeleniumSeekAndDestroy(unittest.TestCase):
         time.sleep(3)
         '''
 
-    def test_2TextFilterSetting(self):
-        ClearText = driver.find_element_by_css_selector('span.clear').click()
-        FindNew = driver.find_element_by_id('search-text').send_keys('контрольная точка созданная Selenium редактировано ' + Keys.ENTER)
-        time.sleep(2)
-
-    def test_3BlockAndProjectListing(self):
-        findBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования')
-        findBlock.click()
+    def test_2DelCP(self):
+        driver.find_element_by_name('yt2').click()
         time.sleep(1)
-        findProject = driver.find_element_by_link_text('Тестовый проект созданный Selenium edit')
-        findProject.click()
-        time.sleep(2)
-
-    def test_4DelCPAndConfirmThis(self):
-        #_ = driver.find_element_by_xpath('//div[2]/div[4]/div[2]/div[2]/div[3]/div/div[1]/div/h4/a/div/span').text == 'контрольная точка созданная Selenium редактировано'
-        DelCP = driver.find_element_by_xpath('//div[2]/div[4]/div[2]/div[2]/div[3]/div/div[1]/div/div/button[3]')
-        DelCP.click()
-        time.sleep(1)
-        elemNo = driver.find_element_by_xpath("//div[3]/div/button[2]")
-        elemNo.click()
-        DelCP.click()
-        time.sleep(1)
-        elemYes = driver.find_element_by_xpath('//div[3]/div/button')
-        elemYes.click()
-
-
+        driver.find_element_by_xpath('//div[3]/div/button').click()
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 

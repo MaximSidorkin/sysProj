@@ -146,30 +146,21 @@ class DSeleniumFillingForm(unittest.TestCase):
         EditProject = driver.find_element_by_name('yt0')
         EditProject.send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
-        # туда
-        triggerKPI = driver.find_element_by_css_selector('span.switch-right')
+        EditProject = driver.find_element_by_name('yt0')
+        EditProject.send_keys(Keys.PAGE_DOWN)
+        time.sleep(1)
+        #туда
+        triggerKPI = driver.find_element_by_xpath("//div[@id='DIV_IS_PRIORITY']/div/div/div/label")
         triggerKPI.click()
         time.sleep(1)
-        triggerPriority = driver.find_element_by_xpath('//div[20]/div/div/div/span[2]')
-        triggerPriority.click()
-        time.sleep(1)
-        triggerDone = driver.find_element_by_xpath("//div[21]/div/div/div/span[2]")
+        triggerDone = driver.find_element_by_xpath("//div[@id='DIV_IS_DONE']/div/div/div/span[2]")
         triggerDone.click()
         time.sleep(1)
-        # и обратно
-        #triggerKPI = driver.find_element_by_xpath("//div[19]/div/div/div/label").click()
-        #time.sleep(1)
-        triggerPriority = driver.find_element_by_xpath("//div[20]/div/div/div/label").click()
+        #и обратно
+        triggerKPI.click()
         time.sleep(1)
-        triggerDone = driver.find_element_by_xpath("//div[21]/div/div/div/label").click()
+        triggerDone.click()
         time.sleep(2)
-
-        # ещё один триггер
-        triggerAL = driver.find_element_by_xpath('//div[3]/div/div/div/span[2]')
-        triggerAL.click()
-        _ = driver.find_element_by_class_name('col-sm-5')
-        time.sleep(2)
-        triggerAL = driver.find_element_by_xpath("//div[3]/div/div/div/span").click()
 
     def test_5ConfirmCreation(self):
         elem = driver.find_element_by_name('yt0')
