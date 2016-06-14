@@ -89,7 +89,7 @@ class CSeleniumSubtask_3(unittest.TestCase):
 class DSeleniumFillingForm(unittest.TestCase):
     def test_1CheckForm(self):
         assert "ЭОР" in driver.title
-        time.sleep(2)
+        time.sleep(3)
         _ = driver.find_element_by_id('cp_title').text == 'Создание контрольной точки'
         time.sleep(2)
         _ = driver.find_element_by_class_name('warn-cp').text == 'контрольную точку'
