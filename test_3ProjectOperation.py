@@ -56,11 +56,12 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
 
 class CSeleniumCreateNewPjct_3(unittest.TestCase):
     def test_1OpenForm(self):
+        time.sleep(2)
         wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
         btn1 = driver.find_element_by_id("create-cp")
         btn1.click()
-        time.sleep(2)
+        time.sleep(3)
         _ = driver.find_element_by_class_name('warn-cp')    #есть текст "Вы собираетесь создать блок."
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//form/div/div[2]/div[2]/div/div[1]/div[1]/span/i')))
         btn1 = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/div[1]/div[1]/span/i')
