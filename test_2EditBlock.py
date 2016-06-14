@@ -10,7 +10,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 
 driver = webdriver.Firefox()
-driver.get("http://dev.eor.gosapi.ru/")
+driver.get("https://dev.eor.gosapi.ru/")
 driver.maximize_window()
 wait = WebDriverWait(driver, 10)
 
@@ -140,7 +140,7 @@ class DSeleniumEditBlock_4(unittest.TestCase):
         catOk.click()
         negativMsg = driver.find_element_by_id('result').text == 'Не удалось сохранить категорию'
         time.sleep(2)
-        driver.save_screenshot('NoCategories.png')
+        driver.save_screenshot('C:\Program Files (x86)\Jenkins\jobs\Создание Блока\workspace\errorMsg.jpg')
         catCancel = driver.find_element_by_id('catCancel')
         catCancel.click()
 
@@ -153,4 +153,4 @@ class DSeleniumEditBlock_4(unittest.TestCase):
         time.sleep(2)
         saveThisBlock = driver.find_element_by_name('yt0')
         saveThisBlock.click()
-        driver.save_screenshot('AllRight.png')
+        driver.save_screenshot('C:\Program Files (x86)\Jenkins\jobs\Создание Блока\workspace\dragNdrop.jpg')
