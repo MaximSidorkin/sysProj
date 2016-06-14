@@ -74,7 +74,7 @@ class CSeleniumSubtask_3(unittest.TestCase):
         ConfirmFilter = driver.find_element_by_xpath('//div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/ul/li[4]/button[2]')
         ConfirmFilter.click()
         '''
-        time.sleep(3)
+        time.sleep(2)
         findeBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования').click()
         time.sleep(2)
         findeProject = driver.find_element_by_xpath("//div[2]/table/tbody/tr/td").click()
