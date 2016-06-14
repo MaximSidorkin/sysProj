@@ -8,11 +8,11 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-dev = 'http://dev.eor.gosapi.ru/'
-test = 'http://test.eor.gosapi.ru/'
-dev1 = 'http://minakov.eor.gosapi.ru/'
-dev2 = 'http://shmyrev.eor.gosapi.ru/'
-tronov = 'http://tronov.eor.gosapi.ru/'
+dev = 'https://dev.eor.gosapi.ru/'
+test = 'https://test.eor.gosapi.ru/'
+dev1 = 'https://minakov.eor.gosapi.ru/'
+dev2 = 'https://shmyrev.eor.gosapi.ru/'
+tronov = 'https://tronov.eor.gosapi.ru/'
 
 driver = webdriver.Firefox()
 driver.get(dev)
