@@ -15,7 +15,7 @@ wait = WebDriverWait(driver, 10)
 
 # логин в систему
 class ASeleniumAutoTest_1(unittest.TestCase):
-    def test_1CreatedInEORDev(self):
+    def test001_CreatedInEORDev(self):
         assert "Login" in driver.title
         #wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
@@ -24,16 +24,12 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         elem = driver.find_element_by_id("LoginForm_password")
         elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
-    def test_2Not500or404andLoginIsVisible(self):
+    def test002_Not500or404andLoginIsVisible(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
 
-        if __name__ == '__main__':
-            unittest.main()
-
-class BSeleniumOpenAllPjct_2(unittest.TestCase):
-    def test_1OpenAllPjct(self):
+    def test003_OpenAllPjct(self):
         wait = WebDriverWait(driver, 10)
         # time.sleep(3)
         _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
@@ -44,15 +40,12 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         allpj = driver.find_element_by_link_text("Все проекты")
         allpj.click()
 
-    def test_2Not500or404(self):
+    def test004_Not500or404(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
-        if __name__ == '__main__':
-            unittest.main()
 # переход к подзадаче
-class CSeleniumSubtask_3(unittest.TestCase):
-    def test_1GotoSubtask(self):
+    def test005_GotoSubtask(self):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
         time.sleep(1)
         assert "ЭОР" in driver.title
@@ -63,7 +56,7 @@ class CSeleniumSubtask_3(unittest.TestCase):
         elemSearch.send_keys('Selenium')
         elemSearch.send_keys(Keys.ENTER)
 
-    def test_2FilterSetting(self):
+    def test006_FilterSetting(self):
         assert "ЭОР" in driver.title
         time.sleep(3)
         '''
@@ -82,12 +75,11 @@ class CSeleniumSubtask_3(unittest.TestCase):
         plusST = driver.find_element_by_xpath('//div[@id="item-toolbar"]/button').click()
         print('STOP!')
 
-    def test_3Not500or404(self):
+    def test007_Not500or404(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
-class DSeleniumFillingForm(unittest.TestCase):
-    def test_1CheckForm(self):
+    def test008_CheckForm(self):
         assert "ЭОР" in driver.title
         time.sleep(3)
         _ = driver.find_element_by_id('cp_title').text == 'Создание контрольной точки'
@@ -100,7 +92,7 @@ class DSeleniumFillingForm(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
-    def test_2CheckWarningMsg(self):
+    def test009_CheckWarningMsg(self):
         assert "ЭОР" in driver.title
         time.sleep(3)
         _ = driver.find_element_by_id('Checkpoint_TITLE_em_').text == 'Необходимо заполнить поле «Название».'
@@ -110,7 +102,7 @@ class DSeleniumFillingForm(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
-    def test_3FillingForm(self):
+    def test010_FillingForm(self):
         assert "ЭОР" in driver.title
         time.sleep(2)
 
@@ -142,7 +134,7 @@ class DSeleniumFillingForm(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
-    def test_4TriggersCPTest(self):
+    def test011_TriggersCPTest(self):
         EditProject = driver.find_element_by_name('yt0')
         EditProject.send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
@@ -162,14 +154,27 @@ class DSeleniumFillingForm(unittest.TestCase):
         triggerDone.click()
         time.sleep(2)
 
-    def test_5ConfirmCreation(self):
+    def test012_ConfirmCreation(self):
         elem = driver.find_element_by_name('yt0')
         elem.click()
         time.sleep(3)
         wait = WebDriverWait(driver, 10)
         #wait.until(EC.element_to_be_clickable((By.XPATH, '//div[4]/div/div[2]/div/div[2]/div[11]/input[3]')))
         _ = driver.find_element_by_xpath('//div[2]/div[4]/div/div[2]/div/div[1]/div[1]').text == 'Паспорт Контрольной'
-    def test_6DeleteSubTask(self):
+
+    def test013_CreateCopyST(self):
+        time.sleep(2)
+        driver.find_element_by_name('yt1').click()
+        time.sleep(3)
+        driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('12345' + Keys.ENTER)
+        time.sleep(1)
+        _ = driver.find_element_by_name('yt0')
+        _.send_keys(Keys.PAGE_DOWN)
+        time.sleep(1)
+        driver.find_element_by_name('yt0').click()
+        time.sleep(3)
+
+    def test014_DeleteSubTask(self):
         time.sleep(2)
         deleteButton = driver.find_element_by_name('yt2')
         deleteButton.click()
