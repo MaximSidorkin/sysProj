@@ -81,7 +81,7 @@ class CSeleniumCreateNewCP(unittest.TestCase):
         #находим проект
         findProject = driver.find_element_by_xpath('//div[2]/div[2]/table/tbody/tr/td[1]/h4/strong/a/span')
         findProject.click()
-        time.sleep(1)
+        time.sleep(2)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 

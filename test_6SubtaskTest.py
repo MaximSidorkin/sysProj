@@ -65,7 +65,7 @@ class CSeleniumSubtask_3(unittest.TestCase):
 
     def test_2FilterSetting(self):
         assert "ЭОР" in driver.title
-        time.sleep(2)
+        time.sleep(3)
         '''
         FilterSetting = driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/a/span')
         FilterSetting.click()
