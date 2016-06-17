@@ -185,14 +185,5 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
-
     if __name__ == '__main__':
         unittest.main()
-
-
-
-
-
-
-
-
