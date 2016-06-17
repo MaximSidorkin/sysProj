@@ -218,7 +218,8 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         assert "Error" not in driver.title
-        _ = wait.until(EC.presence_of_element_located((By.ID, 'yw0')))
+        time.sleep(5)
+        _ = wait.until(EC.presence_of_element_located((By.ID, 'yw1')))
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         assert "ЭОР - Privilege" in driver.title
