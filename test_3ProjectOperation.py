@@ -56,29 +56,25 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
 
 class CSeleniumCreateNewPjct_3(unittest.TestCase):
     def test_1OpenForm(self):
-        time.sleep(2)
+        time.sleep(5)
         wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
         btn1 = driver.find_element_by_id("create-cp")
         btn1.click()
-        time.sleep(3)
+        time.sleep(5)
         _ = driver.find_element_by_class_name('warn-cp')    #есть текст "Вы собираетесь создать блок."
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//form/div/div[2]/div[2]/div/div[1]/div[1]/span/i')))
         btn1 = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/div[1]/div[1]/span/i')
         btn1.click()
 
-    if __name__ == '__main__':
-        unittest.main()
 
     def test_2SearchBlock(self):
+        time.sleep(3)
         SrcSelenBlock = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/div[1]/div[2]/div[1]/input')
         SrcSelenBlock.send_keys('Selenium')
         time.sleep(2)
         GetTarget = driver.find_element(By.CLASS_NAME, "find-text").click()
-        time.sleep(2)
-
-    if __name__ == '__main__':
-        unittest.main()
+        time.sleep(4)
 
     def test_3NewPjctFormBlock(self):
         wait.until(EC.element_to_be_clickable((By.ID, 'btnCloseForm')))      #test
@@ -125,26 +121,26 @@ class DSeleniumEditProject(unittest.TestCase):
         assert "404" not in driver.title
 
     def test_4SeekAndDestroy(self):
-       time.sleep(3)
+       time.sleep(6)
        assert "ЭОР" in driver.title
        elem = driver.find_element_by_link_text('Поиск')
        elem.click()
-       time.sleep(3)
+       time.sleep(4)
        elemSearch = driver.find_element_by_id('search-text')
        elemSearch.click()
        elemSearch.send_keys('Тестовый проект созданный Selenium edit ')
        elemSearch.send_keys(Keys.ENTER)
-       time.sleep(2)
+       time.sleep(6)
        elemTestBlock = driver.find_element_by_xpath('//div[2]/div[2]/div/table/tbody/tr/td[1]/h4')
        elemTestBlock.click()
-       time.sleep(3)
+       time.sleep(4)
        DelProject = driver.find_element_by_xpath('//div[2]/div[2]/div[2]/table/tbody/tr/td[2]/button[2]')
        DelProject.click()
-       time.sleep(2)
+       time.sleep(3)
        elemNo = driver.find_element_by_xpath("//div[3]/div/button[2]")
        elemNo.click()
        DelProject.click()
-       time.sleep(3)
+       time.sleep(4)
        driver.implicitly_wait(10)
        elemYes = driver.find_element_by_xpath('//div[3]/div/button')
        elemYes.click()

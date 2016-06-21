@@ -104,11 +104,12 @@ class DSeleniumEditBlock_4(unittest.TestCase):
             unittest.main()
     # редактируем блок
     def test_2EditBlock(self):
+        time.sleep(5)
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[2]/div[2]/div/table/tbody/tr/td[2]/button[1]')))
         editButton = driver.find_element_by_xpath('//div[2]/div[2]/div/table/tbody/tr/td[2]/button[1]')
         editButton.click()
         #_ = wait.until(EC.element_to_be_clickable((By.ID, 'yt0')))
-        time.sleep(3)
+        time.sleep(6)
         NewTitle = driver.find_element_by_id('Checkpoint_TITLE')
         NewTitle.send_keys(' edit ')
         plus = driver.find_element_by_css_selector('i.fa.fa-plus')
