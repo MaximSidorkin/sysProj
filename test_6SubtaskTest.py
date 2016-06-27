@@ -71,8 +71,8 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         findeBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования').click()
         time.sleep(2)
         findeProject = driver.find_element_by_xpath("//div[2]/table/tbody/tr/td").click()
-        time.sleep(2)
-        plusST = driver.find_element_by_xpath('//div[@id="item-toolbar"]/button').click()
+        time.sleep(4)
+        plusST = driver.find_element_by_xpath("//div[@id='item-toolbar']/button").click()
         print('STOP!')
 
     def test007_Not500or404(self):
