@@ -102,11 +102,11 @@ class DSeleniumEditProject(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.NAME, 'yt0')))
         EditProject = driver.find_element_by_name('yt0')
         EditProject.send_keys(Keys.PAGE_DOWN)
-        time.sleep(1)
+        time.sleep(3)
         EditProject.click()
 
     def test_2editProject(self):
-        time.sleep(4)
+        time.sleep(6)
         ShortName = driver.find_element_by_id("Checkpoint_SHORT_NAME").send_keys("Краткое наименование")
         FullName = driver.find_element_by_id("Checkpoint_TITLE").send_keys(" edit ")
         SaveEdit = driver.find_element_by_name('yt0').click()
