@@ -58,7 +58,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
 
     def test006_FilterSetting(self):
         assert "ЭОР" in driver.title
-        time.sleep(3)
+        time.sleep(6)
         '''
         FilterSetting = driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/a/span')
         FilterSetting.click()
@@ -81,7 +81,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
 
     def test008_CheckForm(self):
         assert "ЭОР" in driver.title
-        time.sleep(3)
+        time.sleep(6)
         _ = driver.find_element_by_id('cp_title').text == 'Создание контрольной точки'
         time.sleep(2)
         _ = driver.find_element_by_class_name('warn-cp').text == 'контрольную точку'
@@ -94,7 +94,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
 
     def test009_CheckWarningMsg(self):
         assert "ЭОР" in driver.title
-        time.sleep(3)
+        time.sleep(6)
         _ = driver.find_element_by_id('Checkpoint_TITLE_em_').text == 'Необходимо заполнить поле «Название».'
         _ = driver.find_element_by_id('Checkpoint_ID_AUTHOR_MISSION_em_').text == 'заполнить поле «Автор поручения».'
         _ = driver.find_element_by_id('Checkpoint_ID_RESPONSIBLE_em_').text == 'заполнить поле «Ответственный».'
@@ -163,14 +163,14 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         _ = driver.find_element_by_xpath('//div[2]/div[4]/div/div[2]/div/div[1]/div[1]').text == 'Паспорт Контрольной'
 
     def test013_CreateCopyST(self):
-        time.sleep(2)
+        time.sleep(5)
         driver.find_element_by_name('yt1').click()
-        time.sleep(3)
+        time.sleep(5)
         driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('12345' + Keys.ENTER)
-        time.sleep(1)
+        time.sleep(2)
         _ = driver.find_element_by_name('yt0')
         _.send_keys(Keys.PAGE_DOWN)
-        time.sleep(1)
+        time.sleep(2)
         driver.find_element_by_name('yt0').click()
         time.sleep(3)
 
