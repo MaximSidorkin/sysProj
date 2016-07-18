@@ -53,12 +53,12 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
 
 class CSeleniumCreateNewBlock_3(unittest.TestCase):
     def test_1CreateNewBlock(self):
-        time.sleep(3)
+        time.sleep(5)
         wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID,'create-cp')))
         btn1 = driver.find_element_by_id("create-cp")
         btn1.click()
-        time.sleep(3)
+        time.sleep(5)
         _ = driver.find_element_by_class_name('warn-cp')
         btn2 = driver.find_element_by_name("yt0")
         btn2.click()
