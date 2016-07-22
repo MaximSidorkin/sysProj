@@ -47,7 +47,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
 # переход к подзадаче
     def test005_GotoSubtask(self):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
-        time.sleep(1)
+        time.sleep(2)
         assert "ЭОР" in driver.title
         elem = driver.find_element_by_link_text('Поиск')
         elem.click()
@@ -58,7 +58,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
 
     def test006_FilterSetting(self):
         assert "ЭОР" in driver.title
-        time.sleep(6)
+        time.sleep(8)
         '''
         FilterSetting = driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/a/span')
         FilterSetting.click()
@@ -67,11 +67,11 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         ConfirmFilter = driver.find_element_by_xpath('//div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/ul/li[4]/button[2]')
         ConfirmFilter.click()
         '''
-        time.sleep(2)
+        time.sleep(6)
         findeBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования').click()
-        time.sleep(2)
+        time.sleep(5)
         findeProject = driver.find_element_by_xpath("//div[2]/table/tbody/tr/td").click()
-        time.sleep(4)
+        time.sleep(5)
         plusST = driver.find_element_by_xpath("//div[@id='item-toolbar']/button").click()
         print('STOP!')
 
@@ -81,12 +81,12 @@ class ASeleniumAutoTest_1(unittest.TestCase):
 
     def test008_CheckForm(self):
         assert "ЭОР" in driver.title
-        time.sleep(6)
+        time.sleep(8)
         _ = driver.find_element_by_id('cp_title').text == 'Создание контрольной точки'
-        time.sleep(2)
+        time.sleep(4)
         _ = driver.find_element_by_class_name('warn-cp').text == 'контрольную точку'
         EditProject = driver.find_element_by_name('yt0')
-        time.sleep(2)
+        time.sleep(4)
         EditProject.send_keys(Keys.PAGE_DOWN)
         EditProject.click()
         assert "500" not in driver.title  # проверка на 500/404 ошибку
@@ -94,7 +94,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
 
     def test009_CheckWarningMsg(self):
         assert "ЭОР" in driver.title
-        time.sleep(6)
+        time.sleep(8)
         _ = driver.find_element_by_id('Checkpoint_TITLE_em_').text == 'Необходимо заполнить поле «Название».'
         _ = driver.find_element_by_id('Checkpoint_ID_AUTHOR_MISSION_em_').text == 'заполнить поле «Автор поручения».'
         _ = driver.find_element_by_id('Checkpoint_ID_RESPONSIBLE_em_').text == 'заполнить поле «Ответственный».'

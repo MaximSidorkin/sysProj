@@ -97,8 +97,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(3)
         #автор
         driver.implicitly_wait(10)
-        autorName = driver.find_element_by_xpath('//form/div/div[2]/div[10]/div/span/span/span/span[2]')
-        _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//form/div/div[2]/div[10]/div/span/span/span/span[2]')))
+        autorName = driver.find_element_by_id('DIV_AUTHOR_MISSION')
+        #_ = wait.until(EC.element_to_be_clickable((By.XPATH, '//form/div/div[2]/div[10]/div/span/span/span/span[2]')))
         autorName.click()
         time.sleep(3)
         driver.implicitly_wait(10)
@@ -107,7 +107,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(2)
         #ответственный
         driver.implicitly_wait(10)
-        responsibleName = driver.find_element_by_xpath("//form/div/div[2]/div[11]/div/span/span[1]/span/span[2]")
+        responsibleName = driver.find_element_by_id("DIV_ID_RESPONSIBLE")
         responsibleName.click()
         time.sleep(2)
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
