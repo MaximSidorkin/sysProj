@@ -88,6 +88,8 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
         autorName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("багреева" + Keys.ENTER)
         pjctMansger = driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]").click()
         pjctMansgerName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("DIT" + Keys.ENTER)
+        pjctCurator = driver.find_element_by_xpath("//div[@id='DIV_PROJECT_CURATOR']/div/span/span/span/span[2]").click()
+        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('багреева' + Keys.ENTER)
 
     def test_5ConfirmCreatingPjct(self):
         time.sleep(2)
