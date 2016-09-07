@@ -13,6 +13,7 @@ test = 'https://test.eor.gosapi.ru/'
 dev1 = 'https://minakov.eor.gosapi.ru/'
 dev2 = 'https://shmyrev.eor.gosapi.ru/'
 tronov = 'https://tronov.eor.gosapi.ru/'
+vragov = 'https://vragov.eor.gosapi.ru/'
 
 driver = webdriver.Firefox()
 driver.get(dev)
@@ -229,7 +230,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         assert "ЭОР - Role" in driver.title
         # Привилегии
     def test019_Privilege(self):
-        users = driver.find_element_by_link_text('Привилегии')
+        users = driver.find_element_by_link_text('Права доступа')
         users.click()
         time.sleep(4)
         title = wait.until(EC.title_is('ЭОР - Privilege'))
