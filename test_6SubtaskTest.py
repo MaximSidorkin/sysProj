@@ -96,7 +96,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         assert "ЭОР" in driver.title
         time.sleep(8)
         _ = driver.find_element_by_id('Checkpoint_TITLE_em_').text == 'Необходимо заполнить поле «Название».'
-        _ = driver.find_element_by_id('Checkpoint_ID_AUTHOR_MISSION_em_').text == 'заполнить поле «Автор поручения».'
+        #_ = driver.find_element_by_id('Checkpoint_ID_AUTHOR_MISSION_em_').text == 'заполнить поле «Автор поручения».'
         _ = driver.find_element_by_id('Checkpoint_ID_RESPONSIBLE_em_').text == 'заполнить поле «Ответственный».'
         _ = driver.find_element_by_id('Checkpoint_DEADLINE_em_').text == 'заполнить поле «Срок исполнения (план)»'
         assert "500" not in driver.title  # проверка на 500/404 ошибку
@@ -105,22 +105,20 @@ class ASeleniumAutoTest_1(unittest.TestCase):
     def test010_FillingForm(self):
         assert "ЭОР" in driver.title
         time.sleep(2)
-
         #имя подзадачи
         nameCP = driver.find_element_by_id('Checkpoint_TITLE')
         nameCP.click()
         nameCP.send_keys("Подзадача созданная Selenium")
         time.sleep(2)
         # автор
-        autorName = driver.find_element_by_xpath("//div[@id='DIV_AUTHOR_MISSION']/div/span/span/span/span[2]").click()
+        #driver.find_element_by_xpath("//div[@id='DIV_AUTHOR_MISSION']/div/span/span/span/span[2]").click()
         #autorName.click()
-        autorNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        autorNameText.send_keys('Багреева')
-        autorNameText.send_keys(Keys.ENTER)
+        #autorNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
+        #autorNameText.send_keys('Багреева')
+        #autorNameText.send_keys(Keys.ENTER)
         time.sleep(2)
         # ответственный
-        responsibleName = driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]").click()
-        #responsibleName.click()
+        driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]").click()
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleNameText.send_keys('DIT')
         time.sleep(2)
@@ -137,29 +135,28 @@ class ASeleniumAutoTest_1(unittest.TestCase):
     def test011_TriggersCPTest(self):
         EditProject = driver.find_element_by_name('yt0')
         EditProject.send_keys(Keys.PAGE_DOWN)
-        time.sleep(1)
-        EditProject = driver.find_element_by_name('yt0')
-        EditProject.send_keys(Keys.PAGE_DOWN)
+        #time.sleep(1)
+        #EditProject = driver.find_element_by_name('yt0')
+        #EditProject.send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
         #туда
-        triggerKPI = driver.find_element_by_xpath("//div[@id='DIV_IS_PRIORITY']/div/div/div/label")
-        triggerKPI.click()
-        time.sleep(1)
-        triggerDone = driver.find_element_by_xpath("//div[@id='DIV_IS_DONE']/div/div/div/span[2]")
-        triggerDone.click()
-        time.sleep(1)
+        #triggerKPI = driver.find_element_by_xpath("//div[@id='DIV_IS_PRIORITY']/div/div/div/label")
+        #triggerKPI.click()
+        #time.sleep(1)
+        #triggerDone = driver.find_element_by_xpath("//div[@id='DIV_IS_DONE']/div/div/div/span[2]")
+        #triggerDone.click()
+        #time.sleep(1)
         #и обратно
-        triggerKPI.click()
-        time.sleep(1)
-        triggerDone.click()
-        time.sleep(2)
+        #triggerKPI.click()
+        #time.sleep(1)
+        #triggerDone.click()
+        #time.sleep(2)
 
     def test012_ConfirmCreation(self):
         elem = driver.find_element_by_name('yt0')
         elem.click()
         time.sleep(3)
         wait = WebDriverWait(driver, 10)
-        #wait.until(EC.element_to_be_clickable((By.XPATH, '//div[4]/div/div[2]/div/div[2]/div[11]/input[3]')))
         _ = driver.find_element_by_xpath('//div[2]/div[4]/div/div[2]/div/div[1]/div[1]').text == 'Паспорт Контрольной'
 
     def test013_CreateCopyST(self):
