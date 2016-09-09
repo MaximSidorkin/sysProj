@@ -84,12 +84,15 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
         nameOfpjct.send_keys("Тестовый проект созданный Selenium")
         time.sleep(2)
         _ = driver.find_element_by_class_name('warn-cp').text == 'проект'   # test
-        autorDown = driver.find_element_by_xpath("//div[@id='DIV_AUTHOR_MISSION']/div/span/span/span/span[2]").click()
+        # руководитель
+        autorDown = driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span").click()
         autorName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("багреева" + Keys.ENTER)
-        pjctMansger = driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]").click()
+        # куратор
+        pjctMansger = driver.find_element_by_xpath("//div[@id='DIV_PROJECT_CURATOR']/div/span/span/span/span[2]").click()
         pjctMansgerName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("DIT" + Keys.ENTER)
-        pjctCurator = driver.find_element_by_xpath("//div[@id='DIV_PROJECT_CURATOR']/div/span/span/span/span[2]").click()
-        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('багреева' + Keys.ENTER)
+
+        #pjctCurator = driver.find_element_by_xpath("//div[@id='DIV_PROJECT_CURATOR']/div/span/span/span/span[2]").click()
+        #driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('багреева' + Keys.ENTER)
 
     def test_5ConfirmCreatingPjct(self):
         time.sleep(2)
