@@ -19,7 +19,9 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_1LoginInEORDev(self):
         assert "Login" in driver.title
         #wait = WebDriverWait(driver, 10)
+        time.sleep(3)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
+        time.sleep(3)
         elem = driver.find_element_by_id("LoginForm_username")
         elem.send_keys("Ipad")
         elem = driver.find_element_by_id("LoginForm_password")
@@ -90,9 +92,6 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
         # куратор
         pjctMansger = driver.find_element_by_xpath("//div[@id='DIV_PROJECT_CURATOR']/div/span/span/span/span[2]").click()
         pjctMansgerName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("DIT" + Keys.ENTER)
-
-        #pjctCurator = driver.find_element_by_xpath("//div[@id='DIV_PROJECT_CURATOR']/div/span/span/span/span[2]").click()
-        #driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('багреева' + Keys.ENTER)
 
     def test_5ConfirmCreatingPjct(self):
         time.sleep(2)
