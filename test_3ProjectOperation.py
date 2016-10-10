@@ -58,25 +58,37 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
 
 class CSeleniumCreateNewPjct_3(unittest.TestCase):
     def test_1OpenForm(self):
+        time.sleep(4)
+        wait = WebDriverWait(driver, 10)
+        _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
+        time.sleep(3)
+        searchButton = driver.find_element_by_id('search-show').click()
+        time.sleep(2)
+        textFild = driver.find_element_by_id('search-text')#('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[8]/li[1]/input')
+        textFild.send_keys('Создал Selenium _для редактирования')
+        textFild.send_keys(Keys.ENTER)
+        time.sleep(4)
+        driver.find_element_by_xpath("//a[contains(text(),'Создал Selenium _для редактирования')]").click()
+        # new fnc
         time.sleep(5)
         wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
         btn1 = driver.find_element_by_id("create-cp")
         btn1.click()
         time.sleep(10)
-        _ = driver.find_element_by_class_name('warn-cp')    #есть текст "Вы собираетесь создать блок."
+        _ = driver.find_element_by_class_name('warn-cp')    #есть текст "Вы собираетесь создать проект."
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div/span/i')))
-        btn1 = driver.find_element_by_xpath('//div/span/i')
-        btn1.click()
+        #btn1 = driver.find_element_by_xpath('//div/span/i')
+        #btn1.click()
 
 
     def test_2SearchBlock(self):
         time.sleep(3)
-        SrcSelenBlock = driver.find_element_by_xpath('//div/div/div[2]/div/input')
-        SrcSelenBlock.send_keys('Создал Selenium _для редактирования')
-        time.sleep(2)
-        GetTarget = driver.find_element(By.CLASS_NAME, "find-text").click()
-        time.sleep(7)
+        #SrcSelenBlock = driver.find_element_by_xpath('//div[2]/div/div/input')
+        #SrcSelenBlock.send_keys('Создал Selenium для редактирования')
+        #time.sleep(2)
+        #GetTarget = driver.find_element(By.CLASS_NAME, "find-text").click()
+        #time.sleep(7)
 
     def test_3NewPjctFormBlock(self):
         wait.until(EC.element_to_be_clickable((By.ID, 'btnCloseForm')))      #test
@@ -129,14 +141,12 @@ class DSeleniumEditProject(unittest.TestCase):
     def test_4SeekAndDestroy(self):
        time.sleep(6)
        assert "ЭОР" in driver.title
-       elem = driver.find_element_by_link_text('Поиск')
-       elem.click()
-       time.sleep(4)
-       elemSearch = driver.find_element_by_id('search-text')
-       elemSearch.click()
-       elemSearch.send_keys('Тестовый проект созданный Selenium edit ')
-       elemSearch.send_keys(Keys.ENTER)
+       driver.find_element_by_id('search-text').clear()
+       time.sleep(1)
+       driver.find_element_by_id('search-text').send_keys('Тестовый проект созданный Selenium edit ')   #new text for search
+       driver.find_element_by_id('search-text-push').click()    # Search click
        time.sleep(6)
+
        elemTestBlock = driver.find_element_by_xpath('//div[2]/div[2]/div/table/tbody/tr/td[1]/h4')
        elemTestBlock.click()
        time.sleep(4)

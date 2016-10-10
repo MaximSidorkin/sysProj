@@ -14,6 +14,7 @@ dev1 = 'https://minakov.eor.gosapi.ru/'
 dev2 = 'https://shmyrev.eor.gosapi.ru/'
 tronov = 'https://tronov.eor.gosapi.ru/'
 vragov = 'https://vragov.eor.gosapi.ru/'
+surin = 'https://surin.eor.gosapi.ru/'
 
 driver = webdriver.Firefox()
 driver.get(dev)

@@ -28,7 +28,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
     def test_2Not500or404andLoginIsVisible(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
-        _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
+        #_ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
 
         if __name__ == '__main__':
             unittest.main()
@@ -91,11 +91,13 @@ class CSeleniumCreateNewBlock_3(unittest.TestCase):
 class DSeleniumEditBlock_4(unittest.TestCase):
     # находим только что созданный блок
     def test_1FindBlock(self):
-        time.sleep(3)
+        time.sleep(4)
         wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
-        searchButton = driver.find_element_by_id('search-show')
-        searchButton.click()
+        time.sleep(3)
+        searchButton = driver.find_element_by_id('search-show').click()
+        #searchButton.click()
+        time.sleep(2)
         textFild = driver.find_element_by_id('search-text')#('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[8]/li[1]/input')
         textFild.send_keys('Создал Selenium _для редактирования')
         textFild.send_keys(Keys.ENTER)
@@ -147,8 +149,8 @@ class DSeleniumEditBlock_4(unittest.TestCase):
 
     def test_4DragAndDrop(self):
         time.sleep(2)
-        cat2Elem = driver.find_element_by_xpath("//div[@id='DIV_BLOCK_CATEGORIES']/div[2]/div/div")
-        cat1Elem = driver.find_element_by_xpath("//div[2]/i")
+        cat2Elem = driver.find_element_by_xpath("//div[@id='DIV_BLOCK_CATEGORIES']/div[2]/div/div[2]/div/div/ul/li[2]/div/div[2]/i")
+        cat1Elem = driver.find_element_by_xpath("//div[@id='DIV_BLOCK_CATEGORIES']/div[2]/div/div[2]/div/div/ul/li/div/div[2]/i")
         ActionChains(driver).drag_and_drop(cat2Elem, cat1Elem).perform()
         # поставить проверку
         time.sleep(2)
