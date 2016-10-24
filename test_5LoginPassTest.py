@@ -38,7 +38,7 @@ class ASeleniumLogin(unittest.TestCase):
         elem.send_keys('123')
         elem.send_keys(Keys.RETURN)
         time.sleep(3)
-        ErrMsg = driver.find_element_by_id('LoginForm_password_em_').text == 'Неправильно указан логин или пароль'
+        ErrMsg = driver.find_element_by_id('LoginForm_password_em_').text == 'Неправильно указан логин или пароль. Введите корректные данные или обратитесь в для восстановления учетных данных.'
 
         if __name__ == '__main__':
             unittest.main()
