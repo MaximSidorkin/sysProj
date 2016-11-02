@@ -30,8 +30,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
 
     def test003_OpenAllPjct(self):
-        wait = WebDriverWait(driver, 10)
-        _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
+        wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
         assert "ЭОР" in driver.title
         driver.find_element_by_css_selector("i.entypo-menu").click()    # menu click
         time.sleep(2)
