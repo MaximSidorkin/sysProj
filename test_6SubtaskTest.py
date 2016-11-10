@@ -1,5 +1,7 @@
 import time
 import unittest
+import HTMLTestRunner
+
 global str
 
 from selenium import webdriver
@@ -153,5 +155,14 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
-    if __name__ == '__main__':
-        unittest.main()
+if __name__ == '__main__':
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(ASeleniumAutoTest_1))
+    # File
+    buf = open("at_for_login_pass_test.html", 'wb')
+    runner = HTMLTestRunner.HTMLTestRunner(
+        stream=buf,
+        title='ПРОВЕРКА КОРРЕКТНОСТИ ВВОДА ЛОГИНА И ПАРОЛЯ',
+        description='Отчет по тестированию'
+    )
+    runner.run(suite)

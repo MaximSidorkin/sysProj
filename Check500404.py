@@ -394,7 +394,7 @@ if __name__ == '__main__':
     buf = open("at_for_500and404.html", 'wb')
     runner = HTMLTestRunner.HTMLTestRunner(
         stream=buf,
-        title='СОЗДАНИЕ/РЕДАКТИРОВАНИЕ/УДАЛЕНИЕ СОВЕЩАНИЯ ИЗ РАСПИСАНИЯ И РАБОЧЕГО СТОЛА',
+        title='ПРОВЕРКА ВСЕХ РАЗДЕЛОВ ЭОР НА ОШИБКИ 500 И 404',
         description='Отчет по тестированию'
     )
     runner.run(suite)
