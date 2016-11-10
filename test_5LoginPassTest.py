@@ -1,5 +1,7 @@
 import time
 import unittest
+import HTMLTestRunner
+
 global str
 
 from selenium import webdriver
@@ -22,12 +24,17 @@ class ASeleniumLogin(unittest.TestCase):
         elem = driver.find_element_by_id("LoginForm_password")
         elem.click()
         elem.send_keys(Keys.RETURN)
+        print('\n 1. Логин и пароль пользователя не введен')
 
     def test_2NoSendLogPass(self):
         assert "Login" in driver.title
-        ErrTextLogin = driver.find_element_by_id('LoginForm_username_em_').text == 'Логин'
-        ErrTextPassw = driver.find_element_by_id('LoginForm_password_em_').text == 'Пароль'
-        time.sleep(4)
+        try:
+            ErrTextLogin = driver.find_element_by_id('LoginForm_username_em_').text == 'Логин'
+            ErrTextPassw = driver.find_element_by_id('LoginForm_password_em_').text == 'Пароль'
+            time.sleep(4)
+            print('\n 2. Выведено сообщение об ошибке')
+        except:
+            print('\n 2. ОШИБКА! сообщение о незаполненных полях не выведено')
 
     def test_3SendIncorrectLogPass(self):
         assert "Login" in driver.title
@@ -38,7 +45,20 @@ class ASeleniumLogin(unittest.TestCase):
         elem.send_keys('123')
         elem.send_keys(Keys.RETURN)
         time.sleep(7)
-        ErrMsg = driver.find_element_by_id('LoginForm_password_em_') #.text == 'Неправильно указан логин или пароль. Введите корректные данные или обратитесь в для восстановления учетных данных.'
+        try:
+            ErrMsg = driver.find_element_by_id('LoginForm_password_em_')
+            print('\n 3. Введены не корректные логин и пароль - выведено сообщение об ошибке')
+        except:
+            print('\n 3. ОШИБКА! сообщение о некорректном логине/пароле не выведено')
 
-        if __name__ == '__main__':
-            unittest.main()
+if __name__ == '__main__':
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(ASeleniumLogin))
+    # File
+    buf = open("at_for_login_pass_test.html", 'wb')
+    runner = HTMLTestRunner.HTMLTestRunner(
+        stream=buf,
+        title='ПРОВЕРКА КОРРЕКТНОСТИ ВВОДА ЛОГИНА И ПАРОЛЯ',
+        description='Отчет по тестированию'
+    )
+    runner.run(suite)
