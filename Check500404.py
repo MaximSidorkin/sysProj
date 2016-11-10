@@ -19,8 +19,8 @@ surin = 'https://surin.eor.gosapi.ru/'
 driver = webdriver.Firefox()
 driver.get(dev)
 driver.maximize_window()
-wait = WebDriverWait(driver, 10)
-driver.implicitly_wait(10)
+wait = WebDriverWait(driver, 20)
+driver.implicitly_wait(20)
 
 class ASeleniumAutoTest_1(unittest.TestCase):
     def test001_CreatedInEORDev(self):
