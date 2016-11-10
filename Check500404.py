@@ -1,5 +1,7 @@
 import time
 import unittest
+import HTMLTestRunner
+
 global str
 
 from selenium import webdriver
@@ -386,8 +388,16 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         #
 
 if __name__ == '__main__':
-    unittest.main()
-
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(ASeleniumAutoTest_1))
+    # File
+    buf = open("at_for_500and404.html", 'wb')
+    runner = HTMLTestRunner.HTMLTestRunner(
+        stream=buf,
+        title='СОЗДАНИЕ/РЕДАКТИРОВАНИЕ/УДАЛЕНИЕ СОВЕЩАНИЯ ИЗ РАСПИСАНИЯ И РАБОЧЕГО СТОЛА',
+        description='Отчет по тестированию'
+    )
+    runner.run(suite)
 
 
 
