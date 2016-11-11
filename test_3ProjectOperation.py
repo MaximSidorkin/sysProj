@@ -1,5 +1,7 @@
 import time
 import unittest
+import HTMLTestRunner
+
 global str
 import page_objects
 
@@ -16,7 +18,7 @@ wait = WebDriverWait(driver, 20)
 
 
 class ASeleniumLogin_1(unittest.TestCase):
-    def test_1LoginInEORDev(self):
+    def test_001_LoginInEORDev(self):
         assert "Login" in driver.title
         #wait = WebDriverWait(driver, 10)
         time.sleep(3)
@@ -27,16 +29,15 @@ class ASeleniumLogin_1(unittest.TestCase):
         elem = driver.find_element_by_id("LoginForm_password")
         elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
-    def test_2Not500or404andLoginIsVisible(self):
+        print('\n 1. Логинимся в ЭОР')
+
+    def test_002_Not500or404andLoginIsVisible(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
+        print('\n 2. Ждем пока страница рабочего стола загрузится \n проверяем на 500/404 проекта')
 
-        if __name__ == '__main__':
-            unittest.main()
-
-class BSeleniumOpenAllPjct_2(unittest.TestCase):
-    def test_1OpenAllPjct(self):
+    def test_003_OpenAllPjct(self):
         wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
         assert "ЭОР" in driver.title
@@ -45,26 +46,21 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         time.sleep(2)
         allpj = driver.find_element_by_link_text("Все проекты")
         allpj.click()
+        print('\n 3. Переходим в раздел все проекты')
 
-    if __name__ == '__main__':
-        unittest.main()
-
-    def test_2Not500or404(self):
+    def test_004_Not500or404(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+        print('\n 4. Ошибок 400/500 не обнаружено')
 
-        if __name__ == '__main__':
-            unittest.main()
-
-class CSeleniumCreateNewPjct_3(unittest.TestCase):
-    def test_1OpenForm(self):
+    def test_005_OpenForm(self):
         time.sleep(4)
         wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
         time.sleep(3)
         searchButton = driver.find_element_by_id('search-show').click()
         time.sleep(2)
-        textFild = driver.find_element_by_id('search-text')#('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[8]/li[1]/input')
+        textFild = driver.find_element_by_id('search-text')
         textFild.send_keys('Создал Selenium _для редактирования')
         textFild.send_keys(Keys.ENTER)
         time.sleep(4)
@@ -78,19 +74,13 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
         time.sleep(10)
         _ = driver.find_element_by_class_name('warn-cp')    #есть текст "Вы собираетесь создать проект."
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div/span/i')))
-        #btn1 = driver.find_element_by_xpath('//div/span/i')
-        #btn1.click()
+        print('\n 5. Переходим от блока к проектам и нажимаем кнопку "Создать"')
 
-
-    def test_2SearchBlock(self):
+    def test_006_SearchBlock(self):
         time.sleep(3)
-        #SrcSelenBlock = driver.find_element_by_xpath('//div[2]/div/div/input')
-        #SrcSelenBlock.send_keys('Создал Selenium для редактирования')
-        #time.sleep(2)
-        #GetTarget = driver.find_element(By.CLASS_NAME, "find-text").click()
-        #time.sleep(7)
+        print('\n 6. Ждем закгрузки формы создания проекта')
 
-    def test_3NewPjctFormBlock(self):
+    def test_007_NewPjctFormBlock(self):
         wait.until(EC.element_to_be_clickable((By.ID, 'btnCloseForm')))      #test
         _ = driver.find_element_by_xpath("//form/div/div[2]/div[1]/div/div[4]/b")
         nameOfpjct = driver.find_element_by_id("Checkpoint_TITLE")#.send_keys("Тестовый проект созданный Selenium")
@@ -104,15 +94,16 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
         # куратор
         pjctMansger = driver.find_element_by_xpath("//div[@id='DIV_PROJECT_CURATOR']/div/span/span/span/span[2]").click()
         pjctMansgerName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("DIT" + Keys.ENTER)
+        print('\n 7. Заполняем форму проекта')
 
-    def test_5ConfirmCreatingPjct(self):
+    def test_008_ConfirmCreatingPjct(self):
         time.sleep(2)
         driver.find_element_by_name("yt0").send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
         CreateButton = driver.find_element_by_name("yt0").click()
+        print('\n 8. Сохраняем новый проект')
 
-class DSeleniumEditProject(unittest.TestCase):
-    def test_1CheckPage(self):
+    def test_009_CheckPage(self):
         # проверить элементы на странице
         time.sleep(5)
         driver.set_page_load_timeout(5)
@@ -122,23 +113,23 @@ class DSeleniumEditProject(unittest.TestCase):
         EditProject.send_keys(Keys.PAGE_DOWN)
         time.sleep(3)
         EditProject.click()
+        print('\n 9. Проверяем элементы на странице и нажимаем кнопку редактировать')
 
-    def test_2editProject(self):
+    def test_010_editProject(self):
         time.sleep(6)
         ShortName = driver.find_element_by_id("Checkpoint_SHORT_NAME").send_keys("Краткое наименование")
         FullName = driver.find_element_by_id("Checkpoint_TITLE").send_keys(" edit ")
         SaveEdit = driver.find_element_by_name('yt0').click()
+        print('\n 10. Редактируем проект и сохраняем его')
 
-    if __name__ == '__main__':
-        unittest.main()
-
-    def test_3AllRight(self):
+    def test_011_AllRight(self):
         time.sleep(4)
         _ = driver.find_element_by_id('C_TITLE').text == ' edit '
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+        print('\n 11. Проверяем, отобразились ли в паспорте проекта внесенные изменения')
 
-    def test_4SeekAndDestroy(self):
+    def test_012_SeekAndDestroy(self):
        time.sleep(6)
        assert "ЭОР" in driver.title
        driver.find_element_by_id('search-text').clear()
@@ -160,11 +151,16 @@ class DSeleniumEditProject(unittest.TestCase):
        driver.implicitly_wait(10)
        elemYes = driver.find_element_by_xpath('//div[3]/div/button')
        elemYes.click()
+       print('\n 12. Заново находим проект и удаляем его \n (проверка кнопок "удалить да/нет", удалить да/да присутствует)')
 
-    if __name__ == '__main__':
-        unittest.main()
-
-
-
-
-
+if __name__ == '__main__':
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(ASeleniumLogin_1))
+    # File
+    buf = open("at_for_PROJECT.html", 'wb')
+    runner = HTMLTestRunner.HTMLTestRunner(
+        stream=buf,
+        title='ПРОВЕРКА СОЗДАНИЯ СОЗДАНИЯ/РЕДАКТИРВОАНИЯ/УДАЛЕНИЯ ПРОЕКТА',
+        description='Отчет по тестированию'
+    )
+    runner.run(suite)

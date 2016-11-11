@@ -1,5 +1,7 @@
 import time
 import unittest
+import HTMLTestRunner
+
 global str
 
 from selenium import webdriver
@@ -15,7 +17,7 @@ driver.maximize_window()
 wait = WebDriverWait(driver, 20)
 
 class ASeleniumAutoTest_1(unittest.TestCase):
-    def test_1CreatedInEORDev(self):
+    def test_001_CreatedInEORDev(self):
         assert "Login" in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         elem = driver.find_element_by_id("LoginForm_username")
@@ -24,12 +26,14 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         elem.send_keys("ipad")
         driver.save_screenshot('LoginPassPage.png')
         elem.send_keys(Keys.RETURN)
-    def test_2Not500or404andLoginIsVisible(self):
+        print('\n 1. Логинимся в ЭОР')
+
+    def test_002_Not500or404andLoginIsVisible(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+        print('\n 2. Проверяем наличие ошибок 500/404 на странице')
 
-class BSeleniumOpenAllPjct_2(unittest.TestCase):
-    def test_1OpenAllPjct(self):
+    def test_003_OpenAllPjct(self):
         _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
         assert "ЭОР" in driver.title
         menu = driver.find_element_by_css_selector("i.entypo-menu")
@@ -37,12 +41,14 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         time.sleep(4)
         allpj = driver.find_element_by_link_text("Все проекты")
         allpj.click()
-    def test_2Not500or404(self):
+        print('\n 3. Переходим в раздел "Все проекты"')
+
+    def test_004_Not500or404(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+        print('\n 4. Проверяем наличие ошибок 500/404 на странице')
 
-class CSeleniumCreateNewBlock_3(unittest.TestCase):
-    def test_1CreateNewBlock(self):
+    def test_005_CreateNewBlock(self):
         time.sleep(5)
         _ = wait.until(EC.element_to_be_clickable((By.ID,'create-cp')))
         btn1 = driver.find_element_by_id("create-cp")
@@ -60,17 +66,19 @@ class CSeleniumCreateNewBlock_3(unittest.TestCase):
         time.sleep(3)
         _ = driver.find_element_by_id('Checkpoint_TITLE_em_')
 
-    def test_2CreateNewBlockRight(self):
+        print('\n 5. Нажимаем кнопку "создать" не заполняя обязательные поля \nПроверяем наличие предупреждающих сообщений')
+
+    def test_006_CreateNewBlockRight(self):
         wait.until(EC.element_to_be_clickable((By.ID, 'Checkpoint_TITLE')))
         elemTitle = driver.find_element_by_id("Checkpoint_TITLE")
         elemTitle.send_keys("Создал Selenium _для редактирования")
         btn2 = driver.find_element_by_name("yt0")
         btn2.click()
         driver.save_screenshot('CreateNewBlock.png')
+        print('\n 6. Заполняем обязательные поля и нажимаем создать')
 
-class DSeleniumEditBlock_4(unittest.TestCase):
     # находим только что созданный блок
-    def test_1FindBlock(self):
+    def test_007_FindBlock(self):
         time.sleep(4)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
         time.sleep(3)
@@ -79,9 +87,10 @@ class DSeleniumEditBlock_4(unittest.TestCase):
         textFild = driver.find_element_by_id('search-text')
         textFild.send_keys('Создал Selenium _для редактирования')
         textFild.send_keys(Keys.ENTER)
+        print('\n 7. Находим только что созданный блок')
 
     # редактируем блок
-    def test_2EditBlock(self):
+    def test_008_EditBlock(self):
         time.sleep(5)
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[2]/div[2]/div/table/tbody/tr/td[2]/button[1]')))
         editButton = driver.find_element_by_xpath('//div[2]/div[2]/div/table/tbody/tr/td[2]/button[1]')
@@ -109,8 +118,9 @@ class DSeleniumEditBlock_4(unittest.TestCase):
         catOk2.click()
         time.sleep(3)
         driver.save_screenshot('EditBlock.png')
+        print('\n 8. Редактируем блок меняя название, добавляя категории')
 
-    def test_3NegativEditBlock(self):
+    def test_009_NegativEditBlock(self):
         plus = driver.find_element_by_css_selector('i.fa.fa-plus')
         plus.click()
         driver.implicitly_wait(10)
@@ -121,8 +131,9 @@ class DSeleniumEditBlock_4(unittest.TestCase):
         driver.save_screenshot('C:\Program Files (x86)\Jenkins\jobs\Создание Блока\workspace\errorMsg.jpg')
         catCancel = driver.find_element_by_id('catCancel')
         catCancel.click()
+        print('\n 9. Проверяем невозможность создания категории без имени')
 
-    def test_4DragAndDrop(self):
+    def test_010_DragAndDrop(self):
         time.sleep(2)
         cat2Elem = driver.find_element_by_xpath("//div[@id='DIV_BLOCK_CATEGORIES']/div[2]/div/div[2]/div/div/ul/li[2]/div/div[2]/i")
         cat1Elem = driver.find_element_by_xpath("//div[@id='DIV_BLOCK_CATEGORIES']/div[2]/div/div[2]/div/div/ul/li/div/div[2]/i")
@@ -132,6 +143,16 @@ class DSeleniumEditBlock_4(unittest.TestCase):
         saveThisBlock = driver.find_element_by_name('yt0')
         saveThisBlock.click()
         driver.save_screenshot('C:\Program Files (x86)\Jenkins\jobs\Создание Блока\workspace\dragNdrop.jpg')
+        print('\n 10. Проверяем возможность перетягиваания категорий drug-and-drop')
 
-    if __name__ == '__main__':
-        unittest.main()
+if __name__ == '__main__':
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(ASeleniumAutoTest_1))
+    # File
+    buf = open("at_for_BLOCK.html", 'wb')
+    runner = HTMLTestRunner.HTMLTestRunner(
+        stream=buf,
+        title='ПРОВЕРКА СОЗДАНИЯ СОЗДАНИЯ/РЕДАКТИРВОАНИЯ/УДАЛЕНИЯ БЛОКА',
+        description='Отчет по тестированию'
+    )
+    runner.run(suite)

@@ -29,6 +29,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         assert "Login" in driver.title
         try:
             assert 'Error' not in driver.title
+            print('\n 1. Нет ошибок при вводе логина')
         except:
             print('ошибка 500!')
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
@@ -37,8 +38,10 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         elem = driver.find_element_by_id("LoginForm_password")
         elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
+
     def test002_Not500or404andLoginIsVisible(self):
         try:
+            print('\n 2. Нет ошибок на рабочем столе')
             assert 'Error' not in driver.title
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
@@ -56,26 +59,30 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         time.sleep(6)
         allpj = driver.find_element_by_link_text("Все проекты")
         allpj.click()
+        print('\n 3. переходим раздел "Все проекты"')
+
     def test004_Not500or404(self):
         title = wait.until(EC.title_is('ЭОР - Checkpoint'))
         try:
             assert 'Error' not in driver.title
+            print('\n 4. Нет ошибок в разделе "Все проекты"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         assert "ЭОР - Checkpoint" in driver.title
-        # assert "Error" not in driver.title
 
     def test005_Schedule(self):
         schedul = driver.find_element_by_link_text("Расписание")
         schedul.click()
         time.sleep(6)
         _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'add-meeting')))
+        print('\n 5. Переходим в раздел "Расписание"')
 
     def test006_Not500or404(self):
         title = wait.until(EC.title_is('ЭОР - Default'))
         try:
             assert 'Error' not in driver.title
+            print('\n 6. Нет ошибок в разделе "Расписание"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -86,11 +93,13 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         question.click()
         time.sleep(4)
         _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'navbar-header')))
+        print('\n 7. Переходим в раздел "Вопросы/приоритеты"')
 
     def test008_Not500or404(self):
         title = wait.until(EC.title_is('ЭОР - Question'))
         try:
             assert 'Error' not in driver.title
+            print('\n 8. Нет ошибок в разделе "Вопросы/приоритеты"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -101,12 +110,14 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         material.click()
         time.sleep(4)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'search-show')))
+        print('\n 9. Переходим в раздел "Материалы"')
 
     def test010_Not500or404(self):
         time.sleep(4)
         title = wait.until(EC.title_is('ЭОР - Material'))
         try:
             assert 'Error' not in driver.title
+            print('\n 10. Нет ошибок в разделе "Материалы"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -117,12 +128,14 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         npa.click()
         time.sleep(4)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'search-show')))
+        print('\n 11. Переходим в раздел "Нормативно правовые акты"')
 
     def test012_Not500or404(self):
         title = wait.until(EC.title_is('ЭОР - Npa'))
         time.sleep(4)
         try:
             assert 'Error' not in driver.title
+            print('\n 12. Нет ошибок в разделе "Нормативно правовые акты"')
         except:
             print('ошибка 500!') # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -133,11 +146,13 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         document.click()
         time.sleep(4)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'search-show')))
+        print('\n 13. Переходим в раздел "Библиотека"')
 
     def test014_Not500or404(self):
         title = wait.until(EC.title_is('ЭОР - Document'))
         try:
             assert 'Error' not in driver.title
+            print('\n 14. Нет ошибок в разделе "Библиотека"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -183,6 +198,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         title = wait.until(EC.title_is('ЭОР - Rating'))
         try:
             assert 'Error' not in driver.title
+            print('\n 15. Переходим в раздел "Отчеты", во всех отчетах нет ошибок')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -192,6 +208,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         admin = driver.find_element_by_link_text("Администрирование")
         admin.click()
         time.sleep(1)
+        print('\n 16. Переходим в раздел "Администрирование"')
         # Пользователи
     def test017_Users(self):
         users = driver.find_element_by_link_text('Пользователи')
@@ -200,6 +217,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         title = wait.until(EC.title_is('ЭОР - User'))
         try:
             assert 'Error' not in driver.title
+            print('\n 17. Нет ошибок в разделе пользователи')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -219,6 +237,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         time.sleep(4)
         title = wait.until(EC.title_is('ЭОР - Role'))
         try:
+            print('\n 18. Нет ошибок в разделе "Роли"')
             assert 'Error' not in driver.title
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
@@ -226,6 +245,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
 
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'btn_create_user')))
         try:
+            print('\n Нет ошибки на странице пользователи')
             assert 'Error' not in driver.title
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
@@ -239,12 +259,14 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         title = wait.until(EC.title_is('ЭОР - Privilege'))
         try:
             assert 'Error' not in driver.title
+            print('\n 19. Переходим в раздел "Права доступа"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         time.sleep(5)
         _ = wait.until(EC.presence_of_element_located((By.ID, 'yw1')))
         try:
+            print('\n Нет ошибки на странице "Права доступа"')
             assert 'Error' not in driver.title
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
@@ -255,6 +277,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         journ = driver.find_element_by_link_text("Журналы")
         journ.click()
         time.sleep(1)
+        print('\n 20. переходим в раздел "Журналы"')
         # Авторизации
     def test021_Logs(self):
         autor = driver.find_element_by_link_text("Авторизации")
@@ -263,6 +286,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         title = wait.until(EC.title_is('ЭОР - Logs'))
         try:
             assert 'Error' not in driver.title
+            print('\n 21. Переходим в раздел "Авторизации"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -270,6 +294,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         _ = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'dropdown')))
         try:
             assert 'Error' not in driver.title
+            print('\n нет ошибко в разделе "Авторизации"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -282,12 +307,14 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         title = wait.until(EC.title_is('ЭОР - Data'))
         try:
             assert 'Error' not in driver.title
+            print('\n 22. Переходим в раздел "Обмен данными"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         _ = wait.until(EC.presence_of_element_located((By.ID, 'resetFilters')))
         try:
             assert 'Error' not in driver.title
+            print('\n нет ошибок в разделе "Авторизации"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -300,12 +327,14 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         title = wait.until(EC.title_is('ЭОР - Operation'))
         try:
             assert 'Error' not in driver.title
+            print('\n 23. Переходим в раздел "Операции пользователя"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         _ = wait.until(EC.presence_of_element_located((By.ID, 'resetFilters')))
         try:
             assert 'Error' not in driver.title
+            print('\n Переходим в раздел "Операции пользователя"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -318,6 +347,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         title = wait.until(EC.title_is('ЭОР - Dictionary'))
         try:
             assert 'Error' not in driver.title
+            print('\n 24. Переходим в раздел "Справочники"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -325,6 +355,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.LINK_TEXT, 'Этапы НПА')))
         try:
             assert 'Error' not in driver.title
+            print('\n нет ошибок в разделе "Справочники"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -333,6 +364,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         apps = driver.find_element_by_link_text("Приложения")
         apps.click()
         time.sleep(1)
+        print('\n 21. Переходим в раздел "Приложения"')
         # Управление iPad ЭОР
     def test026_Ipad(self):
         driv = driver.find_element_by_link_text("Управление iPad ЭОР")
@@ -341,12 +373,14 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         title = wait.until(EC.title_is('ЭОР - Ipad'))
         try:
             assert 'Error' not in driver.title
+            print('\n 26. Переходим в раздел "Управление iPad ЭОР"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.LINK_TEXT, 'Создать релиз')))
         try:
             assert 'Error' not in driver.title
+            print('\n нет ошибок в разделе "Авторизации"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -355,6 +389,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         struc = driver.find_element_by_link_text("Структура данных")
         struc.click()
         time.sleep(1)
+        print('\n 27. Переходим в раздел "Структура данных"')
         # Управление структурой
     def test028_AdminStr(self):
         admStr = driver.find_element_by_link_text("Управление структурой")
@@ -364,6 +399,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         assert "ЭОР - Gii" in driver.title
         try:
             assert 'Error' not in driver.title
+            print('\n 28. Нет ошибок в разделе "Управление утруктурой"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -377,6 +413,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         assert "ЭОР - Database" in driver.title
         try:
             assert 'Error' not in driver.title
+            print('\n 29. Переходим в раздел "Управление хранилищем данных \n- в данном разделе нет ошибок"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -384,6 +421,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
     def test030_Resource(self):
         res = driver.find_element_by_link_text("Ресурсы ИС")
         res.click()
+        print('\n 30. Переходим в раздел "Ресурсы ИС"')
         time.sleep(2)
         #
 

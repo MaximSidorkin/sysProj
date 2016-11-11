@@ -26,10 +26,11 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         elem = driver.find_element_by_id("LoginForm_password")
         elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
+        print('\n 1. Логинимся в систему')
     def test002_Not500or404andLoginIsVisible(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
-        # _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
+        print('\n 2. Ошибок 500 и 404 не обнаружено')
         time.sleep(5)
 
     def test003_OpenAllPjct(self):
@@ -42,10 +43,12 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         time.sleep(4)
         allpj = driver.find_element_by_link_text("Все проекты")
         allpj.click()
+        print('\n 3. Переходим в раздел "Все проекты"')
 
     def test004_Not500or404(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+        print('\n 4. При переходе в раздел "Все проекты" ошибок 404 и 500 не обнаружено')
 
 # переход к подзадаче
     def test005_GotoSubtask(self):
@@ -58,6 +61,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         elemSearch.click()
         elemSearch.send_keys('Selenium')
         elemSearch.send_keys(Keys.ENTER)
+        print('\n 5. В поиске вводим ключевое слово "Selenium"')
 
     def test006_FilterSetting(self):
         assert "ЭОР" in driver.title
@@ -67,11 +71,12 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         findProject = driver.find_element_by_xpath("//div[2]/table/tbody/tr/td").click()
         time.sleep(5)
         plusST = driver.find_element_by_xpath("//div[@id='item-toolbar']/button").click()
-        print('STOP!')
+        print('\n 6. Открываем блок, потом проект, кликаем по иконке "+"\n открывая форму создания подзадачи')
 
     def test007_Not500or404(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+        print('\n 7. Ошибок 500 и 404 не обнаружено')
 
     def test008_CheckForm(self):
         assert "ЭОР" in driver.title
@@ -85,6 +90,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         EditProject.click()
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+        print('\n 8. Проверяем форму на корретность атрибутов')
 
     def test009_CheckWarningMsg(self):
         assert "ЭОР" in driver.title
@@ -94,6 +100,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         _ = driver.find_element_by_id('Checkpoint_DEADLINE_em_').text == 'заполнить поле «Срок исполнения (план)»'
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+        print('\n 9. Кликаем на кнопку "создать" не заполняя обязательные поля, \n затем проверям наличие предупреждающих сообщений')
 
     def test010_FillingForm(self):
         assert "ЭОР" in driver.title
@@ -119,11 +126,13 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         terms.send_keys(Keys.ENTER)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+        print('\n 10. Корректно заполняем форму')
 
     def test011_TriggersCPTest(self):
         EditProject = driver.find_element_by_name('yt0')
         EditProject.send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
+        print('\n 11. Нажимаем кнопку "Создать"')
 
     def test012_ConfirmCreation(self):
         elem = driver.find_element_by_name('yt0')
@@ -131,6 +140,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         time.sleep(3)
         WebDriverWait(driver, 10)
         _ = driver.find_element_by_xpath('//div[2]/div[4]/div/div[2]/div/div[1]/div[1]').text == 'Паспорт Контрольной'
+        print('\n 12. Проверяем на корректность атрбутоы паспотра')
 
     def test013_CreateCopyST(self):
         time.sleep(5)
@@ -143,6 +153,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         time.sleep(2)
         driver.find_element_by_name('yt0').click()
         time.sleep(3)
+        print('\n 13. открываем на редактирвоание подзадачу и изменяем дату, \n сохраняем изменения')
 
     def test014_DeleteSubTask(self):
         time.sleep(2)
@@ -151,6 +162,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         time.sleep(2)
         elemYes = driver.find_element_by_xpath('//div[3]/div/button')
         elemYes.click()
+        print('\n 14. Удаляем созданную подзадачу')
 
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -159,10 +171,10 @@ if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(ASeleniumAutoTest_1))
     # File
-    buf = open("at_for_login_pass_test.html", 'wb')
+    buf = open("at_for_SUBTASK.html", 'wb')
     runner = HTMLTestRunner.HTMLTestRunner(
         stream=buf,
-        title='ПРОВЕРКА КОРРЕКТНОСТИ ВВОДА ЛОГИНА И ПАРОЛЯ',
+        title='ПРОВЕРКА СОЗДАНИЯ СОЗДАНИЯ/РЕДАКТИРВОАНИЯ/УДАЛЕНИЯ ПОДЗАДАЧИ',
         description='Отчет по тестированию'
     )
     runner.run(suite)

@@ -1,5 +1,7 @@
 import time
 import unittest
+import HTMLTestRunner
+
 global str
 
 from selenium import webdriver
@@ -23,11 +25,15 @@ class ASeleniumLogin_1(unittest.TestCase):
         elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
 
+        print('\n 1. Логинимся в ЭОР')
+
     def test002_Not500or404andLoginIsVisible(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         time.sleep(4)
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
+
+        print('\n 2. Ждем пока страница загрузится проверяем на 500/404')
 
     def test003_OpenAllPjct(self):
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
@@ -36,9 +42,13 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(2)
         driver.find_element_by_link_text("Все проекты").click()         # all project click
 
+        print('\n 3. переходим в раздел все проекты')
+
     def test004_Not500or404(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+
+        print('\n 4. Подтверждаем, что страница успешно загрузилась')
 
     def test005_OpenForm(self):
         wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
@@ -53,12 +63,16 @@ class ASeleniumLogin_1(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
+        print('\n 5. В поиске по ключевому слову selenium находим блок')
+
     def test006_FindBlock(self):
         #находим блок
         driver.find_element_by_link_text('Создал Selenium _для редактирования').click()
         time.sleep(3)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+
+        print('\n 6. Переходим от блока к проекту')
 
     def test007_FindProject(self):
         #находим проект
@@ -67,12 +81,16 @@ class ASeleniumLogin_1(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
+        print('\n 7. переходим от проекта к контрольным точкам')
+
     def test008_CreateCP(self):
         #создаем контрольную точку
         driver.find_element_by_id('create-cp').click()
         time.sleep(1)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+
+        print('\n 8. нажимаем кнопку "Создать"')
 
     def test009_FillingCPForm(self):
         time.sleep(3)
@@ -95,17 +113,23 @@ class ASeleniumLogin_1(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
+        print('\n 8. Заполняем форму контрольной точки')
+
     def test009_TriggersCPTest(self):
         driver.find_element_by_name('yt0').send_keys(Keys.PAGE_DOWN)
         time.sleep(2)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
+        print('\n 9. Находим кнопку "Сохранить"')
+
     def test010_ConfirmCPCreating(self):
         driver.find_element_by_name('yt0').click()
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         time.sleep(3)
+
+        print('\n 10. Сохраняем новую контрольную точку')
 
     def test011_ClickEditButton(self):
         driver.implicitly_wait(20)
@@ -115,6 +139,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         time.sleep(3)
+
+        print('\n 11. Нажимаем кнопку "редактировать" на паспорте контрольной точки')
 
     def test012_editCP(self):
         driver.implicitly_wait(20)
@@ -126,12 +152,16 @@ class ASeleniumLogin_1(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
+        print('\n 12. вносим изменения в контрольную точку и сохраняем')
+
     def test013_AllRight(self):
         time.sleep(4)
         driver.implicitly_wait(20)
         _ = driver.find_element_by_id('C_TITLE').text == ' редактировано '
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+
+        print('\n 13. Подтверждаем, что изменения отображаются в \n паспорте контрольной точки')
 
     def test014_CreateCopyCP(self):
         time.sleep(3)
@@ -146,6 +176,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_name('yt0').click()
         time.sleep(3)
 
+        print('\n 14. Создаём копию контрольной точки')
+
     def test015_DelCP(self):
         driver.find_element_by_name('yt2').click()
         time.sleep(1)
@@ -153,5 +185,16 @@ class ASeleniumLogin_1(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
-    if __name__ == '__main__':
-        unittest.main()
+        print('\n 15. Удаляем контрольную точку')
+
+if __name__ == '__main__':
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(ASeleniumLogin_1))
+    # File
+    buf = open("at_for_CHECKPOINT.html", 'wb')
+    runner = HTMLTestRunner.HTMLTestRunner(
+        stream=buf,
+        title='ПРОВЕРКА СОЗДАНИЯ СОЗДАНИЯ/РЕДАКТИРВОАНИЯ/УДАЛЕНИЯ КОНТРОЛЬНОЙ ТОЧКИ',
+        description='Отчет по тестированию'
+    )
+    runner.run(suite)
