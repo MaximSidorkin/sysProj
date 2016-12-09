@@ -1,6 +1,6 @@
 import time
 import unittest
-import HTMLTestRunner
+import HTMLTestRunner, sys
 
 global str
 
@@ -13,13 +13,12 @@ from selenium.webdriver.support.wait import WebDriverWait
 driver = webdriver.Firefox()
 driver.get("https://dev.eor.gosapi.ru")
 driver.maximize_window()
-wait = WebDriverWait(driver, 10)
+wait = WebDriverWait(driver, 20)
 
 # логин в систему
 class ASeleniumAutoTest_1(unittest.TestCase):
     def test001_CreatedInEORDev(self):
         assert "Login" in driver.title
-        # wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         elem = driver.find_element_by_id("LoginForm_username")
         elem.send_keys("Ipad")
@@ -27,15 +26,14 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
         print('\n 1. Логинимся в систему')
+
     def test002_Not500or404andLoginIsVisible(self):
-        assert "500" not in driver.title  # проверка на 500/404 ошибку
-        assert "404" not in driver.title
+        assert "ЭОР - Error" not in driver.title  # проверка на 500/404 ошибку
         print('\n 2. Ошибок 500 и 404 не обнаружено')
         time.sleep(5)
 
     def test003_OpenAllPjct(self):
         wait = WebDriverWait(driver, 10)
-        # time.sleep(3)
         _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
         assert "ЭОР" in driver.title
         menu = driver.find_element_by_css_selector("i.entypo-menu")
@@ -46,8 +44,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         print('\n 3. Переходим в раздел "Все проекты"')
 
     def test004_Not500or404(self):
-        assert "500" not in driver.title  # проверка на 500/404 ошибку
-        assert "404" not in driver.title
+        assert "ЭОР - Error" not in driver.title  # проверка на 500/404 ошибку
         print('\n 4. При переходе в раздел "Все проекты" ошибок 404 и 500 не обнаружено')
 
 # переход к подзадаче
@@ -74,8 +71,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         print('\n 6. Открываем блок, потом проект, кликаем по иконке "+"\n открывая форму создания подзадачи')
 
     def test007_Not500or404(self):
-        assert "500" not in driver.title  # проверка на 500/404 ошибку
-        assert "404" not in driver.title
+        assert "ЭОР - Error" not in driver.title  # проверка на 500/404 ошибку
         print('\n 7. Ошибок 500 и 404 не обнаружено')
 
     def test008_CheckForm(self):
@@ -88,8 +84,6 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         time.sleep(4)
         EditProject.send_keys(Keys.PAGE_DOWN)
         EditProject.click()
-        assert "500" not in driver.title  # проверка на 500/404 ошибку
-        assert "404" not in driver.title
         print('\n 8. Проверяем форму на корретность атрибутов')
 
     def test009_CheckWarningMsg(self):
@@ -98,8 +92,6 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         _ = driver.find_element_by_id('Checkpoint_TITLE_em_').text == 'Необходимо заполнить поле «Название».'
         _ = driver.find_element_by_id('Checkpoint_ID_RESPONSIBLE_em_').text == 'заполнить поле «Ответственный».'
         _ = driver.find_element_by_id('Checkpoint_DEADLINE_em_').text == 'заполнить поле «Срок исполнения (план)»'
-        assert "500" not in driver.title  # проверка на 500/404 ошибку
-        assert "404" not in driver.title
         print('\n 9. Кликаем на кнопку "создать" не заполняя обязательные поля, \n затем проверям наличие предупреждающих сообщений')
 
     def test010_FillingForm(self):
@@ -124,8 +116,6 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         terms.click()
         terms.send_keys("12345")
         terms.send_keys(Keys.ENTER)
-        assert "500" not in driver.title  # проверка на 500/404 ошибку
-        assert "404" not in driver.title
         print('\n 10. Корректно заполняем форму')
 
     def test011_TriggersCPTest(self):
@@ -164,9 +154,6 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         elemYes.click()
         print('\n 14. Удаляем созданную подзадачу')
 
-        assert "500" not in driver.title  # проверка на 500/404 ошибку
-        assert "404" not in driver.title
-
 if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(ASeleniumAutoTest_1))
@@ -177,4 +164,5 @@ if __name__ == '__main__':
         title='ПРОВЕРКА СОЗДАНИЯ СОЗДАНИЯ/РЕДАКТИРВОАНИЯ/УДАЛЕНИЯ ПОДЗАДАЧИ',
         description='Отчет по тестированию'
     )
-    runner.run(suite)
+    ret = not runner.run(suite).wasSuccessful()
+    sys.exit(ret)

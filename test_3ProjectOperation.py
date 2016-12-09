@@ -1,6 +1,6 @@
 import time
 import unittest
-import HTMLTestRunner
+import HTMLTestRunner, sys
 
 global str
 import page_objects
@@ -32,13 +32,11 @@ class ASeleniumLogin_1(unittest.TestCase):
         print('\n 1. Логинимся в ЭОР')
 
     def test_002_Not500or404andLoginIsVisible(self):
-        assert "500" not in driver.title  # проверка на 500/404 ошибку
-        assert "404" not in driver.title
+        assert "ЭОР - Error" not in driver.title  # проверка на 500/404 ошибку
         _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
         print('\n 2. Ждем пока страница рабочего стола загрузится \n проверяем на 500/404 проекта')
 
     def test_003_OpenAllPjct(self):
-        wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
         assert "ЭОР" in driver.title
         menu = driver.find_element_by_css_selector("i.entypo-menu")
@@ -49,8 +47,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print('\n 3. Переходим в раздел все проекты')
 
     def test_004_Not500or404(self):
-        assert "500" not in driver.title  # проверка на 500/404 ошибку
-        assert "404" not in driver.title
+        assert "ЭОР - Error" not in driver.title  # проверка на 500/404 ошибку
         print('\n 4. Ошибок 400/500 не обнаружено')
 
     def test_005_OpenForm(self):
@@ -163,4 +160,5 @@ if __name__ == '__main__':
         title='ПРОВЕРКА СОЗДАНИЯ СОЗДАНИЯ/РЕДАКТИРВОАНИЯ/УДАЛЕНИЯ ПРОЕКТА',
         description='Отчет по тестированию'
     )
-    runner.run(suite)
+    ret = not runner.run(suite).wasSuccessful()
+    sys.exit(ret)

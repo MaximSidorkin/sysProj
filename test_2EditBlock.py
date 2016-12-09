@@ -1,6 +1,6 @@
 import time
 import unittest
-import HTMLTestRunner
+import HTMLTestRunner, sys
 
 global str
 
@@ -155,4 +155,5 @@ if __name__ == '__main__':
         title='ПРОВЕРКА СОЗДАНИЯ СОЗДАНИЯ/РЕДАКТИРВОАНИЯ/УДАЛЕНИЯ БЛОКА',
         description='Отчет по тестированию'
     )
-    runner.run(suite)
+    ret = not runner.run(suite).wasSuccessful()
+    sys.exit(ret)
