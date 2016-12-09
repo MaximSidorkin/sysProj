@@ -387,7 +387,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
     def test027_GoodTone(self):
         print('\n 27. ТЕСТ ЗАВЕРШЕН ')
         driver.close()
-        #
+
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()

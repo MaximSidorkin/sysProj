@@ -54,7 +54,7 @@ class ASeleniumLogin(unittest.TestCase):
 if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(ASeleniumLogin))
-    # File
+
     buf = open("at_for_login_pass_test.html", 'wb')
     runner = HTMLTestRunner.HTMLTestRunner(
         stream=buf,
