@@ -33,7 +33,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         time.sleep(5)
 
     def test003_OpenAllPjct(self):
-        wait = WebDriverWait(driver, 10)
+        #wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
         assert "ЭОР" in driver.title
         menu = driver.find_element_by_css_selector("i.entypo-menu")
