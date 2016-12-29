@@ -14,7 +14,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 driver = webdriver.Firefox()
 driver.get("https://dev.eor.gosapi.ru/")
 driver.maximize_window()
-wait = WebDriverWait(driver, 20)
+wait = WebDriverWait(driver, 40)
 
 class ASeleniumAutoTest_1(unittest.TestCase):
     def test_001_CreatedInEORDev(self):
