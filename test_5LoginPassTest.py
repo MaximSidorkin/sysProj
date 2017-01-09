@@ -13,7 +13,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 driver = webdriver.Firefox()
 driver.get("https://dev.eor.gosapi.ru/")
 driver.maximize_window()
-wait = WebDriverWait(driver, 20)
+wait = WebDriverWait(driver, 40)
 
 class ASeleniumLogin(unittest.TestCase):
     def test_1Login(self):
@@ -50,6 +50,24 @@ class ASeleniumLogin(unittest.TestCase):
             print('\n 3. Введены не корректные логин и пароль - выведено сообщение об ошибке')
         except:
             print('\n 3. ОШИБКА! сообщение о некорректном логине/пароле не выведено')
+
+    def test_4LetMeIn(self):
+        _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
+        driver.find_element_by_id("LoginForm_username").clear()
+        driver.find_element_by_id("LoginForm_password").clear()
+        time.sleep(1)
+        driver.find_element_by_id("LoginForm_username").send_keys('ipad')
+        elem = driver.find_element_by_id("LoginForm_password").send_keys('ipad'+Keys.ENTER)
+        time.sleep(1)
+        try:
+            _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
+            print('\n 4. Логин и пароль пользователя введен корректно, \nпользователь авторизован, вход в систему осуществлён')
+        except:
+            self.fail(print('\n\n 4. АВТОРИЗАЦИЯ С ВЕРНЫМИ ДАННЫМИ ПОЛЬЗОВАТЕЛЯ НЕ ПРОШЛА - ОШИБКА!\n\n'))
+
+    def test_5CloseBrowser(self):
+        print('\n 5. Тест завершен, браузер закрыт')
+        driver.close()
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
