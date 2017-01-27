@@ -26,13 +26,13 @@ driver.implicitly_wait(40)
 
 class ASeleniumAutoTest_1(unittest.TestCase):
     def test001_CreatedInEORDev(self):
-        assert "Login" in driver.title
         try:
             assert 'ЭОР - Error' not in driver.title
             print('\n 1. Нет ошибок при вводе логина')
         except:
             print('ошибка 500!')
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
+        assert "Login" in driver.title
         elem = driver.find_element_by_id("LoginForm_username")
         elem.send_keys("Ipad")
         elem = driver.find_element_by_id("LoginForm_password")
@@ -176,6 +176,46 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+        # add
+        try:    # вкладка "Блок"
+            wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,'div.tree.project > div.head')))
+            driver.find_element_by_css_selector('div.tree.project > div.head')
+            print('Ошибка 500 при переходе на вкладку "Блок" не найдено')
+        except:
+            self.fail(
+                print('Ошибка 500! при переходе на вкладку "Блок" в разделе Отчеты -> Отчёты по контрольным точкам')
+            )
+        #wait.until(EC.element_to_be_clickable((By.XPATH, '//label[2]')))
+        driver.find_element_by_xpath('//li/label[2]').click()
+        try:    # вкладка "Проект"
+            wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,'div.tree.project > div.head')))
+            driver.find_element_by_css_selector('div.tree.project > div.head')
+            print('Ошибка 500 при переходе на вкладку "Проект" не найдено')
+        except:
+            self.fail(
+                print('Ошибка 500! при переходе на вкладку "Проект" в разделе Отчеты -> Отчёты по контрольным точкам')
+            )
+        wait.until(EC.element_to_be_clickable((By.XPATH, '//label[3]')))
+        driver.find_element_by_xpath('//label[3]').click()
+        try:    # вкладка "Ответственный"
+            wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'div.tree.project > div.head')))
+            driver.find_element_by_css_selector('div.tree.project > div.head')
+            print('Ошибка 500 при переходе на вкладку "Ответственный" не найдено')
+        except:
+            self.fail(
+                print('Ошибка 500! при переходе на вкладку "Ответственный" в разделе Отчеты -> Отчёты по контрольным точкам')
+            )
+        wait.until(EC.element_to_be_clickable((By.XPATH, '//label[4]')))
+        driver.find_element_by_xpath('//label[4]').click()
+        try:  # вкладка "Замы"
+            wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'div.tree.project > div.head')))
+            driver.find_element_by_css_selector('div.tree.project > div.head')
+            print('Ошибка 500 при переходе на вкладку "Замы" не найдено')
+        except:
+            self.fail(
+                print(
+                    'Ошибка 500! при переходе на вкладку "Замы" в разделе Отчеты -> Отчёты по контрольным точкам')
+            )
         # Отчёт Проект Расписания
         schedule = driver.find_element_by_link_text('Отчёт Проект Расписания')
         schedule.click()

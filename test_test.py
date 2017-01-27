@@ -1,4 +1,8 @@
+# coding: utf8
+
+import time
 import unittest
+import HTMLTestRunner, sys
 
 global str
 
@@ -7,27 +11,27 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
-dev = 'https://dev.eor.gosapi.ru/'
+from selenium.webdriver.common.action_chains import ActionChains
 
 driver = webdriver.Firefox()
-driver.get(dev)
+driver.get("https://owa.mos.ru/EWS/Exchange.asmx")
 driver.maximize_window()
-wait = WebDriverWait(driver, 20)
-driver.implicitly_wait(20)
+wait = WebDriverWait(driver, 40)
 
-class ASeleniumAutoTest_1(unittest.TestCase):
-    def test001_CreatedInEORDev(self):
-        assert "Login" in driver.title
-        try:
-            assert 'ЭОР - Error' not in driver.title
-            print('\n 1. Нет ошибок при вводе логина')
-        except:
-            print('ошибка 500!')
-        _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
-        elem = driver.find_element_by_id("LoginForm_username")
-        elem.send_keys("Ipad")
-        elem = driver.find_element_by_id("LoginForm_password")
-        elem.send_keys("ipad")
-        elem.send_keys(Keys.RETURN)
+class A_GetImp(unittest.TestCase):
+    def t1_firstStep(self):
+        time.sleep(5)
+        print('\n\n\n Ok \n\n\n')
 
+if __name__ == '__main__':
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(A_GetImp))
+
+    buf = open("at_for_OWA.html", 'wb')
+    runner = HTMLTestRunner.HTMLTestRunner(
+        stream=buf,
+        title='ПРОВЕРКА OWA',
+        description='Отчет по тестированию'
+    )
+    ret = not runner.run(suite).wasSuccessful()
+    sys.exit(ret)

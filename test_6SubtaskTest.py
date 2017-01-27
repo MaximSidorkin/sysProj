@@ -15,11 +15,10 @@ driver.get("https://dev.eor.gosapi.ru")
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 
-# логин в систему
 class ASeleniumAutoTest_1(unittest.TestCase):
     def test001_CreatedInEORDev(self):
-        assert "Login" in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
+        assert "Login" in driver.title
         elem = driver.find_element_by_id("LoginForm_username")
         elem.send_keys("Ipad")
         elem = driver.find_element_by_id("LoginForm_password")

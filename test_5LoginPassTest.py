@@ -17,8 +17,8 @@ wait = WebDriverWait(driver, 40)
 
 class ASeleniumLogin(unittest.TestCase):
     def test_1Login(self):
-        assert "Login" in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
+        assert "Login" in driver.title
         elem = driver.find_element_by_id("LoginForm_username")
         elem.click()
         elem = driver.find_element_by_id("LoginForm_password")

@@ -18,13 +18,12 @@ wait = WebDriverWait(driver, 40)
 
 class ASeleniumAutoTest_1(unittest.TestCase):
     def test_001_CreatedInEORDev(self):
-        assert "Login" in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
+        assert "Login" in driver.title
         elem = driver.find_element_by_id("LoginForm_username")
         elem.send_keys("Ipad")
         elem = driver.find_element_by_id("LoginForm_password")
         elem.send_keys("ipad")
-        driver.save_screenshot('LoginPassPage.png')
         elem.send_keys(Keys.RETURN)
         print('\n 1. Логинимся в ЭОР')
 
