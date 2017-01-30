@@ -208,8 +208,9 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         wait.until(EC.element_to_be_clickable((By.XPATH, '//label[4]')))
         driver.find_element_by_xpath('//label[4]').click()
         try:  # вкладка "Замы"
-            wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'div.tree.project > div.head')))
-            driver.find_element_by_css_selector('div.tree.project > div.head')
+            time.sleep(7)
+            #wait.until(EC.element_to_be_clickable((By.ID, 'report-content')))
+            driver.find_element_by_id('report-content')
             print('Ошибка 500 при переходе на вкладку "Замы" не найдено')
         except:
             self.fail(
