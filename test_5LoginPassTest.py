@@ -11,7 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 driver = webdriver.Firefox()
-driver.get("https://dev.eor.gosapi.ru/")
+driver.get("https://dev.eor.gosapi.ru/new")
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 

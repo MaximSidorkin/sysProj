@@ -12,7 +12,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 
 driver = webdriver.Firefox()
-driver.get("https://dev.eor.gosapi.ru/")
+driver.get("https://dev.eor.gosapi.ru/new")
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 
@@ -131,18 +131,6 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         catCancel = driver.find_element_by_id('catCancel')
         catCancel.click()
         print('\n 9. Проверяем невозможность создания категории без имени')
-
-    def test_010_DragAndDrop(self):
-        time.sleep(2)
-        cat2Elem = driver.find_element_by_xpath("//div[@id='DIV_BLOCK_CATEGORIES']/div[2]/div/div[2]/div/div/ul/li[2]/div/div[2]/i")
-        cat1Elem = driver.find_element_by_xpath("//div[@id='DIV_BLOCK_CATEGORIES']/div[2]/div/div[2]/div/div/ul/li/div/div[2]/i")
-        ActionChains(driver).drag_and_drop(cat2Elem, cat1Elem).perform()
-        # поставить проверку
-        time.sleep(2)
-        saveThisBlock = driver.find_element_by_name('yt0')
-        saveThisBlock.click()
-        driver.save_screenshot('C:\Program Files (x86)\Jenkins\jobs\Создание Блока\workspace\dragNdrop.jpg')
-        print('\n 10. Проверяем возможность перетягиваания категорий drug-and-drop')
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()

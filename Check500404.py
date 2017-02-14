@@ -10,7 +10,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-dev = 'https://dev.eor.gosapi.ru/'
+dev = 'https://dev.eor.gosapi.ru/new'
 test = 'https://test.eor.gosapi.ru/'
 dev1 = 'https://minakov.eor.gosapi.ru/'
 dev2 = 'https://shmyrev.eor.gosapi.ru/'
