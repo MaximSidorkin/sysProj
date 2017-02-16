@@ -50,10 +50,12 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         # open desktop
 
     def test003_OpenAllPjct(self):
-        _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
+        _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//i')))
         assert "ЭОР" in driver.title
-        menu = driver.find_element_by_css_selector("i.entypo-menu")
-        menu.click()
+        #menu = driver.find_element_by_css_selector("i.entypo-menu")
+        #menu.click()
+        time.sleep(1)
+        driver.find_element_by_xpath('//i').click()
         time.sleep(6)
         allpj = driver.find_element_by_link_text("Все проекты")
         allpj.click()
