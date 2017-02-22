@@ -231,19 +231,34 @@ class ASeleniumAutoTest_1(unittest.TestCase):
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         assert "ЭОР - Schedule" in driver.title
-        # Отчёт Рейтинги
-        rating = driver.find_element_by_link_text('Отчёт Рейтинги')
+        # Отчёт Рейтинги по Проектам
+        rating = driver.find_element_by_link_text('Отчёт Рейтинги по Проектам')
         rating.click()
         time.sleep(4)
-        _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'title_gears')))
-        title = wait.until(EC.title_is('ЭОР - Rating'))
+        #_ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'title_gears')))
+        title = wait.until(EC.title_is('ЭОР - Projectsrating'))
         try:
+            driver.find_element_by_xpath('//div[2]/table/thead/tr/th')
             assert 'ЭОР - Error' not in driver.title
             print('\n 15. Переходим в раздел "Отчеты", во всех отчетах нет ошибок')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
-        assert "ЭОР - Rating" in driver.title
+
+        # Отчёт по Проектам
+        rating = driver.find_element_by_link_text('Отчёт по Проектам')
+        rating.click()
+        time.sleep(4)
+        #_ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'title_gears')))
+        title = wait.until(EC.title_is('ЭОР - Отчет по проектам'))
+        try:
+            driver.find_element_by_css_selector('div.project-report-group-title')
+            assert 'ЭОР - Error' not in driver.title
+            print('\n 15. Переходим в раздел "Отчёт по Проектам", во всех отчетах нет ошибок')
+        except:
+            print('ошибка 500!')  # проверка на 500/404 ошибку
+        assert "404" not in driver.title
+        #assert "ЭОР - Rating" in driver.title
 
     def test016_Admin(self):
         admin = driver.find_element_by_link_text("Администрирование")
