@@ -1,6 +1,7 @@
 import time
 import unittest
 import HTMLTestRunner, sys
+import datetime
 
 global str
 
@@ -15,6 +16,9 @@ driver = webdriver.Firefox()
 driver.get("https://dev.eor.gosapi.ru/new")
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
+test_time = datetime.datetime.now()
+test_day = test_time.day
+test_month = test_time.month
 
 class ASeleniumAutoTest_1(unittest.TestCase):
     def test_001_CreatedInEORDev(self):
@@ -26,6 +30,8 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
         print('\n 1. Логинимся в ЭОР')
+
+        print('ДАТА ТЕСТА: ',test_day,'/',test_month)
 
     def test_002_Not500or404andLoginIsVisible(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
@@ -50,6 +56,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
     def test_005_CreateNewBlock(self):
         time.sleep(5)
         _ = wait.until(EC.element_to_be_clickable((By.ID,'create-cp')))
+        time.sleep(2)
         btn1 = driver.find_element_by_id("create-cp")
         btn1.click()
         time.sleep(5)
@@ -70,7 +77,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
     def test_006_CreateNewBlockRight(self):
         wait.until(EC.element_to_be_clickable((By.ID, 'Checkpoint_TITLE')))
         elemTitle = driver.find_element_by_id("Checkpoint_TITLE")
-        elemTitle.send_keys("Создал Selenium _для редактирования")
+        elemTitle.send_keys('Создал Selenium _для редактирования ',test_day,'/',test_month)
         btn2 = driver.find_element_by_name("yt0")
         btn2.click()
         driver.save_screenshot('CreateNewBlock.png')
@@ -84,7 +91,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         driver.find_element_by_id('search-show').click()
         time.sleep(2)
         textFild = driver.find_element_by_id('search-text')
-        textFild.send_keys('Создал Selenium _для редактирования')
+        textFild.send_keys('Создал Selenium _для редактирования ',test_day,'/',test_month)
         textFild.send_keys(Keys.ENTER)
         print('\n 7. Находим только что созданный блок')
 
@@ -131,6 +138,16 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         catCancel = driver.find_element_by_id('catCancel')
         catCancel.click()
         print('\n 9. Проверяем невозможность создания категории без имени')
+
+    def test_010_SeveAndDelBlock(self):
+        driver.find_element_by_name('yt0').click()
+        time.sleep(2)
+        _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//td[2]/button[2]')))
+        driver.find_element_by_xpath('//td[2]/button[2]').click()
+        driver.find_element_by_xpath("//div[3]/div/button").click()
+        time.sleep(2)
+        driver.close()
+        print('\n 10. Удаляем только что созданный блок')
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()

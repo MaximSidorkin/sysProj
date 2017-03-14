@@ -1,4 +1,4 @@
-import time
+import time, datetime
 import unittest
 import HTMLTestRunner, sys
 
@@ -14,6 +14,10 @@ driver = webdriver.Firefox()
 driver.get("https://dev.eor.gosapi.ru/new")
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
+
+test_time = datetime.datetime.now()
+test_day = test_time.day
+test_month = test_time.month
 
 class ASeleniumAutoTest_1(unittest.TestCase):
     def test001_CreatedInEORDev(self):
@@ -99,7 +103,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         # имя подзадачи
         nameCP = driver.find_element_by_id('Checkpoint_TITLE')
         nameCP.click()
-        nameCP.send_keys("Подзадача созданная Selenium")
+        nameCP.send_keys("Подзадача созданная Selenium ",test_day,'/',test_month)
         time.sleep(2)
         # автор
         time.sleep(2)

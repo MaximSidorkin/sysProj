@@ -1,4 +1,4 @@
-import time
+import time, datetime
 import unittest
 import HTMLTestRunner, sys
 
@@ -14,6 +14,10 @@ driver = webdriver.Firefox()
 driver.get("https://dev.eor.gosapi.ru/new")
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
+
+test_time = datetime.datetime.now()
+test_day = test_time.day
+test_month = test_time.month
 
 class ASeleniumLogin_1(unittest.TestCase):
     def test001_LoginInEORDev(self):
@@ -98,14 +102,14 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = driver.find_element_by_class_name('warn-cp').text == 'контрольную точку'  # test
         time.sleep(2)
         #имя контрольной точки
-        driver.find_element_by_id('Checkpoint_TITLE').send_keys("контрольная точка созданная Selenium")
+        driver.find_element_by_id('Checkpoint_TITLE').send_keys("контрольная точка созданная Selenium ",test_day,'/',test_month)
         #автор
         driver.implicitly_wait(10)
         #ответственный
         driver.implicitly_wait(10)
         driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]").click()
         time.sleep(2)
-        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('DIT' + Keys.ENTER)
+        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('ipad' + Keys.ENTER)
         time.sleep(2)
         driver.implicitly_wait(10)
         #сроки

@@ -1,6 +1,7 @@
 import time
 import unittest
 import HTMLTestRunner, sys
+import datetime
 
 global str
 import page_objects
@@ -15,6 +16,11 @@ driver = webdriver.Firefox()
 driver.get("https://dev.eor.gosapi.ru/new")
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
+
+test_time = datetime.datetime.now()
+test_day = test_time.day
+test_month = test_time.month
+
 
 class ASeleniumLogin_1(unittest.TestCase):
     def test_001_LoginInEORDev(self):
@@ -34,6 +40,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test_003_OpenAllPjct(self):
         _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
+        time.sleep(3)
         assert "ЭОР" in driver.title
         menu = driver.find_element_by_css_selector("i.entypo-menu")
         menu.click()
@@ -71,14 +78,14 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test_006_SearchBlock(self):
         time.sleep(3)
-        print('\n 6. Ждем закгрузки формы создания проекта')
+        print('\n 6. Ждем загрузки формы создания проекта')
 
     def test_007_NewPjctFormBlock(self):
         wait.until(EC.element_to_be_clickable((By.ID, 'btnCloseForm')))      #test
         _ = driver.find_element_by_xpath("//form/div/div[2]/div[1]/div/div[4]/b")
         nameOfpjct = driver.find_element_by_id("Checkpoint_TITLE")#.send_keys("Тестовый проект созданный Selenium")
         nameOfpjct.click()  #test
-        nameOfpjct.send_keys("Тестовый проект созданный Selenium")
+        nameOfpjct.send_keys("Тестовый проект созданный Selenium ",test_day,'/',test_month)
         time.sleep(2)
         _ = driver.find_element_by_class_name('warn-cp').text == 'проект'   # test
         # руководитель
@@ -127,7 +134,7 @@ class ASeleniumLogin_1(unittest.TestCase):
        assert "ЭОР" in driver.title
        driver.find_element_by_id('search-text').clear()
        time.sleep(1)
-       driver.find_element_by_id('search-text').send_keys('Тестовый проект созданный Selenium edit ')   #new text for search
+       driver.find_element_by_id('search-text').send_keys('Тестовый проект созданный Selenium ',test_day,'/',test_month, ' edit ')   #new text for search
        driver.find_element_by_id('search-text-push').click()    # Search click
        time.sleep(6)
 
