@@ -18,7 +18,8 @@ tronov = 'https://tronov.eor.gosapi.ru/'
 vragov = 'https://vragov.eor.gosapi.ru/'
 surin = 'https://surin.eor.gosapi.ru/'
 
-driver = webdriver.Firefox()
+driver = webdriver.Chrome()
+#driver = webdriver.Firefox()
 driver.get(dev)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
