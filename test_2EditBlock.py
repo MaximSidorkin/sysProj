@@ -12,7 +12,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 
-driver = webdriver.Firefox()
+driver = webdriver.Chrome()
+#driver = webdriver.Firefox()
 driver.get("https://dev.eor.gosapi.ru/new")
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
@@ -118,8 +119,8 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         time.sleep(2)
         newCat2 = driver.find_element_by_id('Category_S_NAME')
         newCat2.send_keys('2')
-        time.sleep(2)
-        driver.implicitly_wait(10)
+        time.sleep(5)
+        #driver.implicitly_wait(10)
         catOk2 = driver.find_element_by_id('catOk')
         catOk2.click()
         time.sleep(3)
@@ -129,7 +130,8 @@ class ASeleniumAutoTest_1(unittest.TestCase):
     def test_009_NegativEditBlock(self):
         plus = driver.find_element_by_css_selector('i.fa.fa-plus')
         plus.click()
-        driver.implicitly_wait(10)
+        time.sleep(5)
+        #driver.implicitly_wait(10)
         catOk = driver.find_element_by_id('catOk')
         catOk.click()
         negativMsg = driver.find_element_by_id('result').text == 'Не удалось сохранить категорию'

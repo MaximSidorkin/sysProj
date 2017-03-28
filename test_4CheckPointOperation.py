@@ -10,7 +10,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-driver = webdriver.Firefox()
+driver = webdriver.Chrome()
+#river = webdriver.Firefox()
 driver.get("https://dev.eor.gosapi.ru/new")
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
@@ -104,14 +105,15 @@ class ASeleniumLogin_1(unittest.TestCase):
         #имя контрольной точки
         driver.find_element_by_id('Checkpoint_TITLE').send_keys("контрольная точка созданная Selenium ",test_day,'/',test_month)
         #автор
-        driver.implicitly_wait(10)
+        #driver.implicitly_wait(10)
+        time.sleep(2)
         #ответственный
-        driver.implicitly_wait(10)
+        #driver.implicitly_wait(10)
         driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]").click()
         time.sleep(2)
         driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('ipad' + Keys.ENTER)
         time.sleep(2)
-        driver.implicitly_wait(10)
+        #driver.implicitly_wait(10)
         #сроки
         driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('12345' + Keys.ENTER)    # deadline date
         assert "500" not in driver.title  # проверка на 500/404 ошибку
@@ -136,7 +138,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print('\n 10. Сохраняем новую контрольную точку')
 
     def test011_ClickEditButton(self):
-        driver.implicitly_wait(20)
+        #driver.implicitly_wait(20)
         time.sleep(3)
         driver.find_element_by_name('yt0').click()
         time.sleep(2)
@@ -147,7 +149,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print('\n 11. Нажимаем кнопку "редактировать" на паспорте контрольной точки')
 
     def test012_editCP(self):
-        driver.implicitly_wait(20)
+        #driver.implicitly_wait(20)
         time.sleep(3)
         driver.find_element_by_id('Checkpoint_TITLE').send_keys(' редактировано ') #.click()
         driver.find_element_by_name('yt0').send_keys(Keys.PAGE_DOWN)
@@ -160,7 +162,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test013_AllRight(self):
         time.sleep(4)
-        driver.implicitly_wait(20)
+        #driver.implicitly_wait(20)
         _ = driver.find_element_by_id('C_TITLE').text == ' редактировано '
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
