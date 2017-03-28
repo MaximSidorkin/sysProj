@@ -261,12 +261,14 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         assert "404" not in driver.title
         #assert "ЭОР - Rating" in driver.title
 
+    '''
     def test016_Admin(self):
         admin = driver.find_element_by_link_text("Администрирование")
         admin.click()
         time.sleep(1)
         print('\n 16. Переходим в раздел "Администрирование"')
         # Пользователи
+
     def test017_Users(self):
         users = driver.find_element_by_link_text('Пользователи')
         users.click()
@@ -441,7 +443,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
-
+'''
         # Структура данных
     def test027_GoodTone(self):
         print('\n 27. ТЕСТ ЗАВЕРШЕН ')
