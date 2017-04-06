@@ -67,10 +67,13 @@ class ASeleniumAutoTest_1(unittest.TestCase):
     def test006_FilterSetting(self):
         assert "ЭОР" in driver.title
         time.sleep(8)
+        _ = wait.until(EC.element_to_be_clickable((By.LINK_TEXT, 'Создал Selenium _для редактирования')))
         findBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования').click()
         time.sleep(5)
+        _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[2]/table/tbody/tr/td')))
         findProject = driver.find_element_by_xpath("//div[2]/table/tbody/tr/td").click()
         time.sleep(5)
+        _ = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='item-toolbar']/button")))
         plusST = driver.find_element_by_xpath("//div[@id='item-toolbar']/button").click()
         print('\n 6. Открываем блок, потом проект, кликаем по иконке "+"\n открывая форму создания подзадачи')
 
