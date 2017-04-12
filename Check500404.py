@@ -261,7 +261,6 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         assert "404" not in driver.title
         #assert "ЭОР - Rating" in driver.title
 
-    '''
     def test016_Admin(self):
         admin = driver.find_element_by_link_text("Администрирование")
         admin.click()
@@ -418,32 +417,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
-        # Приложения
-    def test025_Apps(self):
-        apps = driver.find_element_by_link_text("Приложения")
-        apps.click()
-        time.sleep(1)
-        print('\n 21. Переходим в раздел "Приложения"')
-        # Управление iPad ЭОР
-    def test026_Ipad(self):
-        driv = driver.find_element_by_link_text("Управление iPad ЭОР")
-        driv.click()
-        time.sleep(4)
-        title = wait.until(EC.title_is('ЭОР - Ipad'))
-        try:
-            assert 'ЭОР - Error' not in driver.title
-            print('\n 26. Переходим в раздел "Управление iPad ЭОР"')
-        except:
-            print('ошибка 500!')  # проверка на 500/404 ошибку
-        assert "404" not in driver.title
-        _ = wait.until(EC.element_to_be_clickable((By.LINK_TEXT, 'Создать релиз')))
-        try:
-            assert 'ЭОР - Error' not in driver.title
-            print('\n нет ошибок в разделе "Авторизации"')
-        except:
-            print('ошибка 500!')  # проверка на 500/404 ошибку
-        assert "404" not in driver.title
-'''
+
         # Структура данных
     def test027_GoodTone(self):
         print('\n 27. ТЕСТ ЗАВЕРШЕН ')
