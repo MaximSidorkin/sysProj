@@ -10,9 +10,11 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
+pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
+
 driver = webdriver.Chrome()
-#driver = webdriver.Firefox()
-driver.get("https://dev.eor.gosapi.ru/new")
+driver.get(oracle)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 
@@ -25,9 +27,9 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         assert "Login" in driver.title
         elem = driver.find_element_by_id("LoginForm_username")
-        elem.send_keys("Ipad")
+        elem.send_keys("Selenium_01")
         elem = driver.find_element_by_id("LoginForm_password")
-        elem.send_keys("ipad")
+        elem.send_keys("123")
         elem.send_keys(Keys.RETURN)
         print('\n 1. Логинимся в систему')
 
@@ -67,8 +69,8 @@ class ASeleniumAutoTest_1(unittest.TestCase):
     def test006_FilterSetting(self):
         assert "ЭОР" in driver.title
         time.sleep(8)
-        _ = wait.until(EC.element_to_be_clickable((By.LINK_TEXT, 'Создал Selenium _для редактирования')))
-        findBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования').click()
+        _ = wait.until(EC.element_to_be_clickable((By.LINK_TEXT, 'Selenium')))
+        findBlock = driver.find_element_by_link_text('Selenium').click()
         time.sleep(5)
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[2]/table/tbody/tr/td')))
         findProject = driver.find_element_by_xpath("//div[2]/table/tbody/tr/td").click()
@@ -114,7 +116,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         # ответственный
         driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]").click()
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        responsibleNameText.send_keys('DIT')
+        responsibleNameText.send_keys('Selenium')
         time.sleep(2)
         responsibleNameText.send_keys(Keys.ENTER)
         time.sleep(2)

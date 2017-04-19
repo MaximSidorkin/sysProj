@@ -10,9 +10,11 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
+pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
+
 driver = webdriver.Chrome()
-#driver = webdriver.Firefox()
-driver.get("https://dev.eor.gosapi.ru/new")
+driver.get(oracle)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 
@@ -30,9 +32,10 @@ class ASeleniumLogin(unittest.TestCase):
     def test_2NoSendLogPass(self):
         assert "Login" in driver.title
         try:
-            ErrTextLogin = driver.find_element_by_id('LoginForm_username_em_').text == 'Логин'
-            ErrTextPassw = driver.find_element_by_id('LoginForm_password_em_').text == 'Пароль'
-            time.sleep(4)
+            time.sleep(2)
+            ErrTextLogin = driver.find_element_by_css_selector('div.errorMessage').text == 'Логин'
+            ErrTextPassw = driver.find_element_by_xpath('//div[3]/div[2]').text == 'Пароль'
+            time.sleep(2)
             print('\n 2. Выведено сообщение об ошибке')
         except:
             print('\n 2. ОШИБКА! сообщение о незаполненных полях не выведено')
@@ -47,7 +50,7 @@ class ASeleniumLogin(unittest.TestCase):
         elem.send_keys(Keys.RETURN)
         time.sleep(7)
         try:
-            ErrMsg = driver.find_element_by_id('LoginForm_password_em_')
+            ErrMsg = driver.find_element_by_css_selector('div.errorMessage')
             print('\n 3. Введены не корректные логин и пароль - выведено сообщение об ошибке')
         except:
             print('\n 3. ОШИБКА! сообщение о некорректном логине/пароле не выведено')
@@ -57,8 +60,8 @@ class ASeleniumLogin(unittest.TestCase):
         driver.find_element_by_id("LoginForm_username").clear()
         driver.find_element_by_id("LoginForm_password").clear()
         time.sleep(1)
-        driver.find_element_by_id("LoginForm_username").send_keys('ipad')
-        elem = driver.find_element_by_id("LoginForm_password").send_keys('ipad'+Keys.ENTER)
+        driver.find_element_by_id("LoginForm_username").send_keys('Selenium_01')
+        elem = driver.find_element_by_id("LoginForm_password").send_keys('123'+Keys.ENTER)
         time.sleep(1)
         try:
             _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))

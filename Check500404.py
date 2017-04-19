@@ -17,10 +17,11 @@ dev2 = 'https://shmyrev.eor.gosapi.ru/'
 tronov = 'https://tronov.eor.gosapi.ru/'
 vragov = 'https://vragov.eor.gosapi.ru/'
 surin = 'https://surin.eor.gosapi.ru/'
+oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
+pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
 
 driver = webdriver.Chrome()
-#driver = webdriver.Firefox()
-driver.get(dev)
+driver.get(oracle)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 driver.implicitly_wait(40)

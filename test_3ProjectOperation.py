@@ -12,9 +12,11 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
+pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
+
 driver = webdriver.Chrome()
-#driver = webdriver.Firefox()
-driver.get("https://dev.eor.gosapi.ru/new")
+driver.get(oracle)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 
@@ -28,9 +30,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         assert "Login" in driver.title
         elem = driver.find_element_by_id("LoginForm_username")
-        elem.send_keys("Ipad")
+        elem.send_keys("Selenium_01")
         elem = driver.find_element_by_id("LoginForm_password")
-        elem.send_keys("ipad")
+        elem.send_keys("123")
         elem.send_keys(Keys.RETURN)
         print('\n 1. Логинимся в ЭОР')
 
@@ -62,10 +64,10 @@ class ASeleniumLogin_1(unittest.TestCase):
         searchButton = driver.find_element_by_id('search-show').click()
         time.sleep(2)
         textFild = driver.find_element_by_id('search-text')
-        textFild.send_keys('Создал Selenium _для редактирования')
+        textFild.send_keys('Selenium')
         textFild.send_keys(Keys.ENTER)
         time.sleep(4)
-        driver.find_element_by_xpath("//a[contains(text(),'Создал Selenium _для редактирования')]").click()
+        driver.find_element_by_xpath("//a[contains(text(),'Selenium')]").click()
         # new fnc
         time.sleep(5)
         wait = WebDriverWait(driver, 10)
@@ -91,10 +93,10 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = driver.find_element_by_class_name('warn-cp').text == 'проект'   # test
         # руководитель
         autorDown = driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span").click()
-        autorName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("багреева" + Keys.ENTER)
+        autorName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("Selenium" + Keys.ENTER)
         # куратор
         pjctMansger = driver.find_element_by_xpath("//div[@id='DIV_PROJECT_CURATOR']/div/span/span/span/span[2]").click()
-        pjctMansgerName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("DIT" + Keys.ENTER)
+        pjctMansgerName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("Selenium" + Keys.ENTER)
         print('\n 7. Заполняем форму проекта')
 
     def test_008_ConfirmCreatingPjct(self):

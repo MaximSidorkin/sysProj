@@ -10,9 +10,11 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
+pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
+
 driver = webdriver.Chrome()
-#river = webdriver.Firefox()
-driver.get("https://dev.eor.gosapi.ru/new")
+driver.get(oracle)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 
@@ -25,9 +27,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         assert "Login" in driver.title
         elem = driver.find_element_by_id("LoginForm_username")
-        elem.send_keys("Ipad")
+        elem.send_keys("Selenium_01")
         elem = driver.find_element_by_id("LoginForm_password")
-        elem.send_keys("ipad")
+        elem.send_keys("123")
         elem.send_keys(Keys.RETURN)
 
         print('\n 1. Логинимся в ЭОР')
@@ -72,7 +74,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test006_FindBlock(self):
         #находим блок
-        driver.find_element_by_link_text('Создал Selenium _для редактирования').click()
+        driver.find_element_by_link_text('Selenium').click()
         time.sleep(3)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -111,7 +113,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         #driver.implicitly_wait(10)
         driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]").click()
         time.sleep(2)
-        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('ipad' + Keys.ENTER)
+        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('Selenium' + Keys.ENTER)
         time.sleep(2)
         #driver.implicitly_wait(10)
         #сроки
