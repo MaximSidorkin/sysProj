@@ -21,7 +21,7 @@ oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
 pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
 
 driver = webdriver.Chrome()
-driver.get(oracle)
+driver.get(pgs)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 driver.implicitly_wait(40)
@@ -36,9 +36,9 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         assert "Login" in driver.title
         elem = driver.find_element_by_id("LoginForm_username")
-        elem.send_keys("Ipad")
+        elem.send_keys("Selenium_01")
         elem = driver.find_element_by_id("LoginForm_password")
-        elem.send_keys("ipad")
+        elem.send_keys("123")
         elem.send_keys(Keys.RETURN)
 
     def test002_Not500or404andLoginIsVisible(self):
