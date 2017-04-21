@@ -291,6 +291,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
 
         # Роли
     def test018_Role(self):
+        self.skipTest(self)
         users = driver.find_element_by_link_text('Роли')
         users.click()
         time.sleep(4)
@@ -312,6 +313,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         assert "ЭОР - Role" in driver.title
         # Привилегии
     def test019_Privilege(self):
+        self.skipTest(self)
         users = driver.find_element_by_link_text('Права доступа')
         users.click()
         time.sleep(4)
