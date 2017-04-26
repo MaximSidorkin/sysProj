@@ -183,6 +183,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         assert "ЭОР - Npa" in driver.title
 
     def test013_Document(self):
+        self.skipTest(self)
         document = driver.find_element_by_link_text("Библиотека")
         document.click()
         time.sleep(4)
@@ -191,6 +192,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         print('\n 13. Переходим в раздел "Библиотека"')
 
     def test014_Not500or404(self):
+        self.skipTest(self)
         title = wait.until(EC.title_is('ЭОР - Document'))
         try:
             assert 'ЭОР - Error' not in driver.title
