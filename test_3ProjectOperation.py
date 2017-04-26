@@ -14,9 +14,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
 pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
+dev = 'https://dev.eor.gosapi.ru/new/site/login'
 
 driver = webdriver.Chrome()
-driver.get(oracle)
+driver.get(pgs)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 
@@ -30,9 +31,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         assert "Login" in driver.title
         elem = driver.find_element_by_id("LoginForm_username")
-        elem.send_keys("Selenium_01")
+        elem.send_keys("admin")
         elem = driver.find_element_by_id("LoginForm_password")
-        elem.send_keys("123")
+        elem.send_keys("adminpass")
         elem.send_keys(Keys.RETURN)
         print('\n 1. Логинимся в ЭОР')
 

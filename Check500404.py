@@ -1,5 +1,5 @@
 import time
-import unittest
+import unittest, requests
 import HTMLTestRunner, sys
 
 global str
@@ -21,7 +21,7 @@ oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
 pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
 
 driver = webdriver.Chrome()
-driver.get(oracle)
+driver.get(pgs)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 driver.implicitly_wait(40)
@@ -36,9 +36,9 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         assert "Login" in driver.title
         elem = driver.find_element_by_id("LoginForm_username")
-        elem.send_keys("Selenium_01")
+        elem.send_keys("admin")
         elem = driver.find_element_by_id("LoginForm_password")
-        elem.send_keys("123")
+        elem.send_keys("adminpass")
         elem.send_keys(Keys.RETURN)
 
     def test002_Not500or404andLoginIsVisible(self):
@@ -54,8 +54,6 @@ class ASeleniumAutoTest_1(unittest.TestCase):
     def test003_OpenAllPjct(self):
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//i')))
         assert "ЭОР" in driver.title
-        #menu = driver.find_element_by_css_selector("i.entypo-menu")
-        #menu.click()
         time.sleep(1)
         driver.find_element_by_xpath('//i').click()
         time.sleep(6)
@@ -65,6 +63,20 @@ class ASeleniumAutoTest_1(unittest.TestCase):
 
     def test004_Not500or404(self):
         title = wait.until(EC.title_is('ЭОР - Checkpoint'))
+        # test
+        driver.find_element_by_id('search-show').click()
+        time.sleep(1)
+        textFild = driver.find_element_by_id('search-text')
+        textFild.send_keys("'")
+        textFild.send_keys(Keys.ENTER)
+        time.sleep(5)
+        r = requests.get('https://task.eor.gosapi.ru/pgs/checkpoint/checkpoint/table')
+        time.sleep(2)
+        if r.status_code == 404 or r.status_code == 500:
+            print(' ERROR! STATUS CODE IS WRONG!',r)
+        else:
+            print(' Ok. Status code is',r)
+        # test
         try:
             assert 'Error' not in driver.title
             print('\n 4. Нет ошибок в разделе "Все проекты"')
@@ -76,7 +88,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
     def test005_Schedule(self):
         schedul = driver.find_element_by_link_text("Расписание")
         schedul.click()
-        time.sleep(6)
+        time.sleep(2)
         _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'add-meeting')))
         print('\n 5. Переходим в раздел "Расписание"')
 
@@ -84,6 +96,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         title = wait.until(EC.title_is('ЭОР - Default'))
         try:
             assert 'ЭОР - Error' not in driver.title
+            driver.find_element_by_xpath('//td/span')
             print('\n 6. Нет ошибок в разделе "Расписание"')
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
@@ -113,6 +126,32 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         time.sleep(4)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'search-show')))
         print('\n 9. Переходим в раздел "Материалы"')
+        # test
+        _ = wait.until(EC.element_to_be_clickable((By.XPATH,"//nav/div/div[2]/ul/li/a/span")))
+        # filter period
+        driver.find_element_by_xpath('//nav/div/div[2]/ul/li/a/span').click()
+        time.sleep(2)
+        driver.find_element_by_xpath("//a[contains(text(),'Не учитывать')]").click()
+        # filter where
+        driver.find_element_by_xpath('//ul[2]/li/a/span').click()
+        time.sleep(2)
+        driver.find_element_by_link_text('Из Совещаний').click()
+        # spinner
+        try:
+            driver.find_element_by_xpath('//div[2]/i')
+            print(' Спиннер появился')
+        except:
+            print(' Спиннер не появился/появился на очень короткое время')
+        try:
+            driver.find_element_by_css_selector('div.alert.alert-default')
+            print(" Появилось сообщение о не найденых материалоах")
+        except:
+            print(" Не появилось сообщение о не найденых материалоах")
+        try:
+            driver.find_element_by_css_selector("div.panel-title")
+            print(' Появился список материалов')
+        except:
+            print(" Не появился список материалов!")
 
     def test010_Not500or404(self):
         time.sleep(4)
@@ -147,6 +186,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         document = driver.find_element_by_link_text("Библиотека")
         document.click()
         time.sleep(4)
+        assert 'ЭОР - Error' not in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'search-show')))
         print('\n 13. Переходим в раздел "Библиотека"')
 
@@ -189,7 +229,6 @@ class ASeleniumAutoTest_1(unittest.TestCase):
             self.fail(
                 print('Ошибка 500! при переходе на вкладку "Блок" в разделе Отчеты -> Отчёты по контрольным точкам')
             )
-        #wait.until(EC.element_to_be_clickable((By.XPATH, '//label[2]')))
         driver.find_element_by_xpath('//li/label[2]').click()
         try:    # вкладка "Проект"
             wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,'div.tree.project > div.head')))
@@ -213,13 +252,11 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         driver.find_element_by_xpath('//label[4]').click()
         try:  # вкладка "Замы"
             time.sleep(7)
-            #wait.until(EC.element_to_be_clickable((By.ID, 'report-content')))
             driver.find_element_by_id('report-content')
             print('Ошибка 500 при переходе на вкладку "Замы" не найдено')
         except:
             self.fail(
-                print(
-                    'Ошибка 500! при переходе на вкладку "Замы" в разделе Отчеты -> Отчёты по контрольным точкам')
+                print('Ошибка 500! при переходе на вкладку "Замы" в разделе Отчеты -> Отчёты по контрольным точкам')
             )
         # Отчёт Проект Расписания
         schedule = driver.find_element_by_link_text('Отчёт Проект Расписания')
@@ -237,7 +274,6 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         rating = driver.find_element_by_link_text('Отчёт Рейтинги по Проектам')
         rating.click()
         time.sleep(4)
-        #_ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'title_gears')))
         title = wait.until(EC.title_is('ЭОР - Projectsrating'))
         try:
             driver.find_element_by_xpath('//div[2]/table/thead/tr/th')
@@ -251,7 +287,6 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         rating = driver.find_element_by_link_text('Отчёт по Проектам')
         rating.click()
         time.sleep(4)
-        #_ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'title_gears')))
         title = wait.until(EC.title_is('ЭОР - Отчет по проектам'))
         try:
             driver.find_element_by_css_selector('div.project-report-group-title')
@@ -260,7 +295,6 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         except:
             print('ошибка 500!')  # проверка на 500/404 ошибку
         assert "404" not in driver.title
-        #assert "ЭОР - Rating" in driver.title
 
     def test016_Admin(self):
         admin = driver.find_element_by_link_text("Администрирование")

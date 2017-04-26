@@ -12,9 +12,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
 pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
+dev = 'https://dev.eor.gosapi.ru/new/site/login'
 
 driver = webdriver.Chrome()
-driver.get(oracle)
+driver.get(pgs)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 
@@ -60,8 +61,8 @@ class ASeleniumLogin(unittest.TestCase):
         driver.find_element_by_id("LoginForm_username").clear()
         driver.find_element_by_id("LoginForm_password").clear()
         time.sleep(1)
-        driver.find_element_by_id("LoginForm_username").send_keys('Selenium_01')
-        elem = driver.find_element_by_id("LoginForm_password").send_keys('123'+Keys.ENTER)
+        driver.find_element_by_id("LoginForm_username").send_keys('admin')
+        elem = driver.find_element_by_id("LoginForm_password").send_keys('adminpass'+Keys.ENTER)
         time.sleep(1)
         try:
             _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
