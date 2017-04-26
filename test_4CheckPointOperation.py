@@ -114,7 +114,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         #driver.implicitly_wait(10)
         driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]").click()
         time.sleep(2)
-        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('Selenium' + Keys.ENTER)
+        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('яadmin' + Keys.ENTER)
         time.sleep(2)
         #driver.implicitly_wait(10)
         #сроки
