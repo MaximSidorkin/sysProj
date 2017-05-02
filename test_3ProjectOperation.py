@@ -68,7 +68,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         textFild.send_keys('Selenium')
         textFild.send_keys(Keys.ENTER)
         time.sleep(4)
-        driver.find_element_by_xpath("//a[contains(text(),'Selenium')]").click()
+        #driver.find_element_by_xpath("//a[contains(text(),'Selenium')]").click()
+        driver.find_element_by_link_text('Selenium').click()
         # new fnc
         time.sleep(5)
         wait = WebDriverWait(driver, 10)
