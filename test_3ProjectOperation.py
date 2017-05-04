@@ -95,10 +95,10 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = driver.find_element_by_class_name('warn-cp').text == 'проект'   # test
         # руководитель
         autorDown = driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span").click()
-        autorName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("яadmin" + Keys.ENTER)
+        autorName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("яip" + Keys.ENTER)
         # куратор
         pjctMansger = driver.find_element_by_xpath("//div[@id='DIV_PROJECT_CURATOR']/div/span/span/span/span[2]").click()
-        pjctMansgerName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("яadmin" + Keys.ENTER)
+        pjctMansgerName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("яip" + Keys.ENTER)
         print('\n 7. Заполняем форму проекта')
 
     def test_008_ConfirmCreatingPjct(self):

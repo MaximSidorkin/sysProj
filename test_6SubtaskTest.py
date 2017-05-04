@@ -117,7 +117,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         # ответственный
         driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]").click()
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        responsibleNameText.send_keys('яadmin')
+        responsibleNameText.send_keys('яip')
         time.sleep(2)
         responsibleNameText.send_keys(Keys.ENTER)
         time.sleep(2)
