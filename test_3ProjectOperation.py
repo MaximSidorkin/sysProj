@@ -31,9 +31,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         assert "Login" in driver.title
         elem = driver.find_element_by_id("LoginForm_username")
-        elem.send_keys("admin")
+        elem.send_keys("ipad")
         elem = driver.find_element_by_id("LoginForm_password")
-        elem.send_keys("adminpass")
+        elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
         print('\n 1. Логинимся в ЭОР')
 

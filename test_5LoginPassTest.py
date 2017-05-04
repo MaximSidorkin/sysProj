@@ -61,8 +61,8 @@ class ASeleniumLogin(unittest.TestCase):
         driver.find_element_by_id("LoginForm_username").clear()
         driver.find_element_by_id("LoginForm_password").clear()
         time.sleep(1)
-        driver.find_element_by_id("LoginForm_username").send_keys('admin')
-        elem = driver.find_element_by_id("LoginForm_password").send_keys('adminpass'+Keys.ENTER)
+        driver.find_element_by_id("LoginForm_username").send_keys('ipad')
+        elem = driver.find_element_by_id("LoginForm_password").send_keys('ipad'+Keys.ENTER)
         time.sleep(1)
         try:
             _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
