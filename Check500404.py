@@ -129,29 +129,29 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         # test
         _ = wait.until(EC.element_to_be_clickable((By.XPATH,"//nav/div/div[2]/ul/li/a/span")))
         # filter period
-        driver.find_element_by_xpath('//nav/div/div[2]/ul/li/a/span').click()
-        time.sleep(2)
-        driver.find_element_by_xpath("//a[contains(text(),'Не учитывать')]").click()
+        #driver.find_element_by_xpath('//nav/div/div[2]/ul/li/a/span').click()
+        #time.sleep(2)
+        #driver.find_element_by_xpath("//a[contains(text(),'Не учитывать')]").click()
         # filter where
-        driver.find_element_by_xpath('//ul[2]/li/a/span').click()
-        time.sleep(2)
-        driver.find_element_by_link_text('Из Совещаний').click()
+        #driver.find_element_by_xpath('//ul[2]/li/a/span').click()
+        #time.sleep(2)
+        #driver.find_element_by_link_text('Из Совещаний').click()
         # spinner
-        try:
-            driver.find_element_by_xpath('//div[2]/i')
-            print(' Спиннер появился')
-        except:
-            print(' Спиннер не появился/появился на очень короткое время')
-        try:
-            driver.find_element_by_css_selector('div.alert.alert-default')
-            print(" Появилось сообщение о не найденых материалоах")
-        except:
-            print(" Не появилось сообщение о не найденых материалоах")
-        try:
-            driver.find_element_by_css_selector("div.panel-title")
-            print(' Появился список материалов')
-        except:
-            print(" Не появился список материалов!")
+        #try:
+        #    driver.find_element_by_xpath('//div[2]/i')
+        #    print(' Спиннер появился')
+        #except:
+        #    print(' Спиннер не появился/появился на очень короткое время')
+        #try:
+        #    driver.find_element_by_css_selector('div.alert.alert-default')
+        #    print(" Появилось сообщение о не найденых материалоах")
+        #except:
+        #    print(" Не появилось сообщение о не найденых материалоах")
+        #try:
+        #    driver.find_element_by_css_selector("div.panel-title")
+        #    print(' Появился список материалов')
+        #except:
+        #    print(" Не появился список материалов!")
 
     def test010_Not500or404(self):
         time.sleep(4)
