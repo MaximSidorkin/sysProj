@@ -207,7 +207,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         report.click()
         time.sleep(1)
         # Отчёт по контрольным точкам
-        report1 = driver.find_element_by_link_text("Отчёт по контрольным точкам")
+        report1 = driver.find_element_by_link_text("Отчет по задачам")
         report1.click()
         time.sleep(4)
         title = wait.until(EC.title_is('ЭОР - Report'))
@@ -261,7 +261,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
                 print('Ошибка 500! при переходе на вкладку "Замы" в разделе Отчеты -> Отчёты по контрольным точкам')
             )
         # Отчёт Проект Расписания
-        schedule = driver.find_element_by_link_text('Отчёт Проект Расписания')
+        schedule = driver.find_element_by_link_text('Отчет по совещаниям')
         schedule.click()
         time.sleep(4)
         _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'title_gears')))
