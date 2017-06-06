@@ -15,7 +15,7 @@ pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
 dev = 'https://dev.eor.gosapi.ru/new/site/login'
 
 driver = webdriver.Chrome()
-driver.get(dev)
+driver.get(oracle)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 
@@ -114,7 +114,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         #driver.implicitly_wait(10)
         driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]").click()
         time.sleep(2)
-        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('ipad' + Keys.ENTER)
+        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('яipad' + Keys.ENTER)
         time.sleep(2)
         #driver.implicitly_wait(10)
         #сроки
