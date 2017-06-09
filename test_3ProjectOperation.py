@@ -17,7 +17,7 @@ pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
 dev = 'https://dev.eor.gosapi.ru/new/site/login'
 
 driver = webdriver.Chrome()
-driver.get(oracle)
+driver.get(pgs)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 
@@ -95,10 +95,10 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = driver.find_element_by_class_name('warn-cp').text == 'проект'   # test
         # руководитель
         autorDown = driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span").click()
-        autorName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("яipad" + Keys.ENTER)
+        autorName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("Иванов И" + Keys.ENTER)
         # куратор
         pjctMansger = driver.find_element_by_xpath("//div[@id='DIV_PROJECT_CURATOR']/div/span/span/span/span[2]").click()
-        pjctMansgerName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("яipad" + Keys.ENTER)
+        pjctMansgerName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("Иванов И" + Keys.ENTER)
         print('\n 7. Заполняем форму проекта')
 
     def test_008_ConfirmCreatingPjct(self):

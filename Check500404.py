@@ -21,7 +21,7 @@ oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
 pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
 
 driver = webdriver.Chrome()
-driver.get(oracle)
+driver.get(pgs)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 driver.implicitly_wait(40)
@@ -183,7 +183,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         assert "ЭОР - Npa" in driver.title
 
     def test013_Document(self):
-        self.skipTest(self)
+        #self.skipTest(self)
         document = driver.find_element_by_link_text("Библиотека")
         document.click()
         time.sleep(4)
@@ -192,7 +192,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         print('\n 13. Переходим в раздел "Библиотека"')
 
     def test014_Not500or404(self):
-        self.skipTest(self)
+        #self.skipTest(self)
         title = wait.until(EC.title_is('ЭОР - Document'))
         try:
             assert 'ЭОР - Error' not in driver.title
@@ -299,6 +299,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         assert "404" not in driver.title
 
     def test016_Admin(self):
+        self.skipTest(self)
         admin = driver.find_element_by_link_text("Администрирование")
         admin.click()
         time.sleep(1)
@@ -306,6 +307,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         # Пользователи
 
     def test017_Users(self):
+        self.skipTest(self)
         users = driver.find_element_by_link_text('Пользователи')
         users.click()
         time.sleep(4)
@@ -371,12 +373,14 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         assert "ЭОР - Privilege" in driver.title
         # Журналы
     def test020_Journal(self):
+        self.skipTest(self)
         journ = driver.find_element_by_link_text("Журналы")
         journ.click()
         time.sleep(1)
         print('\n 20. переходим в раздел "Журналы"')
         # Авторизации
     def test021_Logs(self):
+        self.skipTest(self)
         autor = driver.find_element_by_link_text("Авторизации")
         autor.click()
         time.sleep(4)
@@ -398,6 +402,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         assert "ЭОР - Logs" in driver.title
         # Обмен данными
     def test022_Data(self):
+        self.skipTest(self)
         autor = driver.find_element_by_link_text("Обмен данными")
         autor.click()
         time.sleep(4)
@@ -418,6 +423,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         assert "ЭОР - Data" in driver.title
         # Операции пользователя
     def test023_Operation(self):
+        self.skipTest(self)
         autor = driver.find_element_by_link_text("Операции пользователя")
         autor.click()
         time.sleep(4)
@@ -438,6 +444,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         assert "ЭОР - Operation" in driver.title
         # Справочники
     def test024_Dictionary(self):
+        self.skipTest(self)
         dictionary = driver.find_element_by_link_text("Справочники")
         dictionary.click()
         time.sleep(4)
