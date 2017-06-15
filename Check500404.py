@@ -19,9 +19,10 @@ vragov = 'https://vragov.eor.gosapi.ru/'
 surin = 'https://surin.eor.gosapi.ru/'
 oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
 pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
+perm = 'http://dev.perm.gosapi.ru/top/'
 
 driver = webdriver.Chrome()
-driver.get(pgs)
+driver.get(perm)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 driver.implicitly_wait(40)

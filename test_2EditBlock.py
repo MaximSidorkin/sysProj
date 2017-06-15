@@ -15,9 +15,10 @@ from selenium.webdriver.common.action_chains import ActionChains
 oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
 pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
 dev = 'https://dev.eor.gosapi.ru/new/site/login'
+perm = 'http://dev.perm.gosapi.ru/top/'
 
 driver = webdriver.Chrome()
-driver.get(pgs)
+driver.get(perm)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 test_time = datetime.datetime.now()
@@ -29,9 +30,9 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         assert "Login" in driver.title
         elem = driver.find_element_by_id("LoginForm_username")
-        elem.send_keys("ipad")
+        elem.send_keys("admin")
         elem = driver.find_element_by_id("LoginForm_password")
-        elem.send_keys("ipad")
+        elem.send_keys("adminpass")
         elem.send_keys(Keys.RETURN)
         print('\n 1. Логинимся в ЭОР')
 
