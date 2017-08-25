@@ -67,16 +67,16 @@ class ASeleniumAutoTest_1(unittest.TestCase):
         # test
         driver.find_element_by_id('search-show').click()
         time.sleep(1)
-        textFild = driver.find_element_by_id('search-text')
-        textFild.send_keys("'")
-        textFild.send_keys(Keys.ENTER)
-        time.sleep(5)
-        r = requests.get('https://task.eor.gosapi.ru/pgs/checkpoint/checkpoint/table')
-        time.sleep(2)
-        if r.status_code == 404 or r.status_code == 500:
-            print(' ERROR! STATUS CODE IS WRONG!',r)
-        else:
-            print(' Ok. Status code is',r)
+        #textFild = driver.find_element_by_id('search-text')
+        #textFild.send_keys("'")
+        #textFild.send_keys(Keys.ENTER)
+        #time.sleep(5)
+        #r = requests.get('https://task.eor.gosapi.ru/pgs/checkpoint/checkpoint/table')
+        #time.sleep(2)
+        #if r.status_code == 404 or r.status_code == 500:
+        #    print(' ERROR! STATUS CODE IS WRONG!',r)
+        #else:
+        #    print(' Ok. Status code is',r)
         # test
         try:
             assert 'Error' not in driver.title
